@@ -1459,6 +1459,8 @@ var PDFViewerApplication = {
         _this5.fallback(_pdfjsLib.UNSUPPORTED_FEATURES.forms);
       }
     });
+    //Una vez documento abierto cargamos el trace
+      load_trace();
   },
   _initializePdfHistory: function _initializePdfHistory(_ref6) {
     var fingerprint = _ref6.fingerprint,
@@ -1748,6 +1750,7 @@ var PDFViewerApplication = {
     _boundEvents.windowBeforePrint = null;
     _boundEvents.windowAfterPrint = null;
   }
+
 };
 exports.PDFViewerApplication = PDFViewerApplication;
 var validateFileURL;
@@ -2274,6 +2277,8 @@ function webViewerPageChanging(evt) {
       Stats.add(page, pageView.stats);
     }
   }
+  //agregamos funcionalidad de trace
+ trace_page(page);
 }
 
 function webViewerVisibilityChange(evt) {
@@ -2341,6 +2346,9 @@ function webViewerWheel(evt) {
 }
 
 function webViewerClick(evt) {
+  //Cuando se hace click en el documentro se realiza el trace
+  trace_click_link(evt.target);
+
   if (!PDFViewerApplication.secondaryToolbar.isOpen) {
     return;
   }
@@ -15655,6 +15663,36 @@ _app.PDFPrintServiceFactory.instance = {
     return activeService;
   }
 };
+
+function webViewerPrint() {
+  window.print();
+  //evento trace imprimir
+  trace_print();
+}
+function webViewerDownload() {
+  PDFViewerApplication.download();
+  //Evento trace al descargar
+  trace_download();
+}
+
+
+function webViewerClick(evt) {
+//Cuando se hace click en el documentro se realiza el trace
+trace_click_link(evt.target);
+
+if (!PDFViewerApplication.secondaryToolbar.isOpen) {
+  return;
+}
+const appConfig = PDFViewerApplication.appConfig;
+if (
+  PDFViewerApplication.pdfViewer.containsElement(evt.target) ||
+  (appConfig.toolbar.container.contains(evt.target) &&
+    evt.target !== appConfig.secondaryToolbar.toggleButton)
+) {
+  PDFViewerApplication.secondaryToolbar.close();
+}
+
+}
 
 /***/ })
 /******/ ]);
