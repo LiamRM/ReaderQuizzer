@@ -2,6 +2,8 @@ const express = require('express');
 
 const app = express();
 
+const helmet = require('helmet');
+
 const bodyParser = require("body-parser");
 
 const cors = require('cors')
@@ -18,6 +20,8 @@ app.use(
 // app.use(cors());
 
 // app.use( express.static(path.join(__dirname + '/web/')));
+
+app.use(helmet());
 
 app.use ('/static', express.static('web'));
 app.use('/build', express.static('build'));
