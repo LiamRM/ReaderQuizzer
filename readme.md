@@ -13,3 +13,12 @@ You can start with this very repository:
 - Make sure you serve correctly the proper files and that you are linking to your target file (putting it into the "web" folder will make it simple). You can find comprehensive documentation at the GitHub site of Mozilla PDF.js.
 
 - Et voilá! You got it. 
+
+
+### Todo (in order of priority)
+- [ ] Correctly position questions to the right of the PDF Viewer
+- [ ] Incorporate official ChatGPT API
+- [ ] Fix 'generate questions' icon
+- [ ] Generate questions for ALL pages
+- [ ] Add loading indicator when ChatGPT questions are loading
+- [ ] Remove initial visor.html page (?)
