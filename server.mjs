@@ -33,7 +33,7 @@ import pdfjsLib from 'pdfjs-dist';
 import dotenv from 'dotenv-safe';
 import { oraPromise } from 'ora';
 
-app.use(helmet());
+app.use(helmet());  // additional HTTP headers to protect against XSS, clickjacking, etc.
 app.use ('/static', express.static('web'));
 app.use('/build', express.static('build'));
 app.listen(4000, () => console.log('listening on port 4000'));
@@ -145,9 +145,8 @@ app.post('/static/viewer.html', function(req, res) {
   // TODO: Get the fileName dynamically from opening a new file
   // ex: fileName = req.body.filename ...
 
-  GetTextFromPDF("web/" + fileName).then(pt => {
-    console.log("final obj", pt.length);
-    gptFunc(pt).then(lqs => {
+  GetTextFromPDF("web/" + fileName).then(pageTexts => {
+    gptFunc(pageTexts).then(lqs => {
       console.log(lqs);
       questionArray = lqs;
     });

@@ -977,6 +977,8 @@ html[dir='rtl'] #toolbarViewerLeft {
 html[dir='ltr'] #toolbarViewerLeft > *,
 html[dir='ltr'] #toolbarViewerMiddle > *,
 html[dir='ltr'] #toolbarViewerRight > *,
+/* this allows the chatgpt logo to be centered inside the form */
+html[dir='ltr'] #toolbarViewerRightForm > *,
 html[dir='ltr'] .findbar * {
   position: relative;
   float: left;
@@ -1356,7 +1358,7 @@ html[dir='rtl'] .toolbarButton.pageDown::before {
 /* ChatGPT button! */
 .toolbarButton.chatgpt::before,
 .secondaryToolbarButton.presentationMode::before {
-  content: url(images/toolbarButton-print.png);
+  content: url(images/toolbarButton-chatgpt.png);
 }
 
 
@@ -2201,6 +2203,14 @@ html[dir='rtl'] #documentPropertiesOverlay .row > * {
   .toolbarButton.zoomOut::before {
     content: url(images/toolbarButton-zoomOut@2x.png);
   }
+
+
+  /* ChatGPT Button! */
+  .toolbarButton.chatgpt::before,
+  .secondaryToolbarButton.presentationMode::before {
+    content: url(images/toolbarButton-chatgpt@2x.png);
+  }
+
 
   .toolbarButton.presentationMode::before,
   .secondaryToolbarButton.presentationMode::before {
