@@ -20,5 +20,7 @@ You can start with this very repository:
 - [ ] Incorporate official ChatGPT API
 - [ ] Fix 'generate questions' icon
 - [ ] Generate questions for ALL pages
+- [ ] Allow user to specify number of LQs per page (not just 4)
 - [ ] Add loading indicator when ChatGPT questions are loading
 - [ ] Remove initial visor.html page (?)
+- [ ] automatically open localhost:4000 with `nodemon server.mjs` command?
