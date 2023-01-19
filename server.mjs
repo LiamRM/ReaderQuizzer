@@ -62,6 +62,10 @@ import dotenv from 'dotenv-safe';
 import { oraPromise } from 'ora';
 
 dotenv.config()
+
+/* variables */
+let questionArray = [];
+
 // import process from 'process';
 // import { mainModule } from 'process';
 
@@ -166,10 +170,10 @@ app.get('/', function(req, res) {
 
 app.get('/static/viewer.html', function(req, res) {
   // res.sendFile(path.join(__dirname + '/static/viewer.ejs'));
-  res.render("viewer");
+  res.render("viewer", {questionArray: questionArray});
 })
 
-app.post('/static/viewer.ejs', function(req, res) {
+app.post('/static/viewer.html', function(req, res) {
 
   fileName = "rome.pdf";
 
@@ -177,8 +181,9 @@ app.post('/static/viewer.ejs', function(req, res) {
     console.log("final obj", pt.length);
     gptFunc(pt).then(lqs => {
       console.log(lqs);
+      questionArray = lqs;
     });
   });
 
-  res.redirect('/static/viewer.ejs' + '?file=' + fileName);
+  res.redirect('/static/viewer.html' + '?file=' + fileName);
 })

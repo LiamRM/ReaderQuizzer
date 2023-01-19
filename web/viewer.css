@@ -1351,6 +1351,15 @@ html[dir='rtl'] .toolbarButton.pageDown::before {
   content: url(images/toolbarButton-zoomIn.png);
 }
 
+
+
+/* ChatGPT button! */
+.toolbarButton.chatgpt::before,
+.secondaryToolbarButton.presentationMode::before {
+  content: url(images/toolbarButton-print.png);
+}
+
+
 .toolbarButton.presentationMode::before,
 .secondaryToolbarButton.presentationMode::before {
   content: url(images/toolbarButton-presentationMode.png);

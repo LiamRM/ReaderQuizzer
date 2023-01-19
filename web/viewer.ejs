@@ -207,6 +207,18 @@ See https://github.com/adobe-type-tools/cmap-resources
                 <span id="numPages" class="toolbarLabel"></span>
               </div>
               <div id="toolbarViewerRight">
+
+
+                <!-- ChatGPT button! -->
+                
+                <form method="post">
+
+                  <button type="submit" id="chatgpt" class="toolbarButton chatgpt hiddenLargeView" title="Generate GPT Questions" tabindex="30" data-l10n-id="chatgpt">
+                    <span data-l10n-id="chatgpt_label">Generate GPT Questions</span>
+                  </button>
+
+                </form>
+
                 <button id="presentationMode" class="toolbarButton presentationMode hiddenLargeView" title="Switch to Presentation Mode" tabindex="31" data-l10n-id="presentation_mode">
                   <span data-l10n-id="presentation_mode_label">Presentation Mode</span>
                 </button>
@@ -282,6 +294,13 @@ See https://github.com/adobe-type-tools/cmap-resources
         </menu>
 
         <div id="viewerContainer" tabindex="0">
+          
+          <!-- OUTPUT OF CHATGPT LEARNING QUESTIONS -->
+
+          <% for( let index = 0; index < questionArray.length; index++ ) { %>
+            <p> <%= questionArray[index] %>  </p>
+          <% } %>
+          
           <div id="viewer" class="pdfViewer"></div>
         </div>
 
