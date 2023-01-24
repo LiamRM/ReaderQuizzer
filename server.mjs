@@ -40,7 +40,11 @@ app.listen(4000, () => console.log('listening on port 4000'));
 dotenv.config()
 
 /* variables */
-let questionArray = [];
+let questionArray = [
+  "1. What were the three overarching factors that contributed to the collapse of Rome? \n2. What period of Roman history is characterized by stability, economic growth, and territorial expansion?\n3. How did the influx of Roman territory and cultural diversity make it difficult to govern?\n4. What changes were made in an effort to maintain Roman control?",
+  "1. What was the main cause of disunity in the Roman Empire? \n2. What was the role of ineffective leadership and political instability in the collapse of Rome? \n3. How did the actions of the emperors, such as Commodus, contribute to the economic decline of Rome? \n4. What was the impact of the trade deficit in the east on Rome's economy and government actions?",
+  "1. How did the Roman Empire's overexpansion and loss of territory contribute to its economic decline? \n2. What was the impact of social inequality and mistreatment of certain groups in Rome on the empire's stability? \n3. How did internal dissent and riots contribute to the fall of Rome? \n4. How did the rise of Christianity and the acceptance of it by Roman leaders like Constantine contribute to the fall of Rome?"
+];
 var fileName = "default.pdf";
 
 
@@ -79,12 +83,11 @@ async function GetTextFromPDF(path) {
 /**
  * Gets learning questions from ChatGPT based on a text array.
  * @param {array} textArray - array of PDF text, each elem is a page/paragraph of text
- * @returns {array} resultArray - array of learning questions
+ * @returns {array} resultArray - array of learning questions, each elem is questions for a page/paragraph
  */
 async function gptFunc(textArray) {
 
   let prompt = 'Write 4 learning questions about the following text: ' + textArray[0].trimEnd();
-  let result = '';
   let resultArray = [];
   
   const api = new ChatGPTAPIBrowser({
@@ -97,8 +100,7 @@ async function gptFunc(textArray) {
   let res = await oraPromise(api.sendMessage(prompt), {
     text: prompt
   })
-  result = result + '\n1)\n' + res.response;
-  resultArray[0] = res.response;
+  resultArray[0] = res.response + '\n';
   
   // Loop through remaining pages and generate learning questions (only first 3 for testing instead of textArray.length)
   for (let index = 1; index < 3; index++) {
@@ -113,7 +115,6 @@ async function gptFunc(textArray) {
         text: prompt
       }
     )
-    result = result + '\n' + index + '\n' + res.response;
     resultArray[index] = res.response;
   }
 
@@ -137,6 +138,7 @@ app.get('/', function(req, res) {
 
 app.get('/static/viewer.html', function(req, res) {
   // res.sendFile(path.join(__dirname + '/static/viewer.ejs'));
+  console.log("QArray length:", questionArray.length);
   res.render("viewer", {questionArray: questionArray});
 })
 
@@ -149,8 +151,9 @@ app.post('/static/viewer.html', function(req, res) {
     gptFunc(pageTexts).then(lqs => {
       console.log(lqs);
       questionArray = lqs;
+
+      res.redirect('/static/viewer.html' + '?file=' + fileName);
     });
   });
 
-  res.redirect('/static/viewer.html' + '?file=' + fileName);
 })

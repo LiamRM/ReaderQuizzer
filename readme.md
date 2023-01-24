@@ -17,6 +17,7 @@ You can start with this very repository:
 
 ### Todo (in order of priority)
 - [ ] Correctly position questions to the right of the PDF Viewer
+- [ ] Get the height of the page in JS and set the questionBox margin to said height (based on the zoom factor?)
 - [ ] Incorporate official ChatGPT API
 - [x] Fix 'generate questions' icon
 - [ ] Generate questions for ALL pages
