@@ -22,14 +22,14 @@ You can start with this very repository:
 - [ ] Incorporate official ChatGPT API
 - [x] Fix 'generate questions' icon
 - [ ] Generate questions for ALL pages
-- [ ] Allow user to specify number of LQs per page (not just 4)
-- [ ] Add loading indicator when ChatGPT questions are loading
 - [x] Remove initial visor.html page (?)
 - [ ] automatically open localhost:4000 with `nodemon server.mjs` command?
-- [ ] Save questions to file with one question per line, blank line separating page questions
-- [ ] Render a `<p>` tag per question
+- [x] Save questions to file with one question per line, blank line separating page questions
+- [x] Render a `<p>` tag per question
 - [x] Read questions from file into questionArray
 - [x] make questionArray an array of arrays
+- [ ] Allow user to specify number of LQs per page (not just 4)
+- [ ] Add loading indicator when ChatGPT questions are loading
 
 
 ### Under the hood

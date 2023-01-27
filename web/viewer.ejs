@@ -213,8 +213,8 @@ See https://github.com/adobe-type-tools/cmap-resources
                 
                 <form method="post" id="toolbarViewerRightForm">
 
-                  <button type="submit" id="chatgpt" class="toolbarButton chatgpt hiddenLargeView" title="Generate GPT Questions" tabindex="30" data-l10n-id="chatgpt">
-                    <span data-l10n-id="chatgpt_label">Generate GPT Questions</span>
+                  <button type="submit" id="chatgpt" class="toolbarButton chatgpt hiddenLargeView" title="Generate ChatGPT Questions" tabindex="30" data-l10n-id="chatgpt">
+                    <span data-l10n-id="chatgpt_label">Generate ChatGPT Questions</span>
                   </button>
 
                 </form>
@@ -303,7 +303,9 @@ See https://github.com/adobe-type-tools/cmap-resources
               <!-- OUTPUT OF CHATGPT LEARNING QUESTIONS -->
               <% for( let index = 0; index < questionArray.length; index++ ) { %>
                 <div class="questionBox">
-                  <p class="questionText"> <%= questionArray[index] %>  </p>
+                  <% for( let innerIndex = 0; innerIndex < questionArray[index].length; innerIndex++ ) { %>
+                    <p class="questionText"> <%= questionArray[index][innerIndex] %>  </p>
+                  <% } %>
                 </div>
               <% } %>
               

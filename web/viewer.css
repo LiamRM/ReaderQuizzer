@@ -15,33 +15,43 @@
 
 
 /* ChatGPT app specifics */
+#viewerContainer {
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+  position: absolute;
+  top: 32px;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  outline: none;
+
+  /* to center child divs */
+  display: flex;
+  justify-content: center;
+}
+
+#pdf-viewer-container{
+  position: absolute;
+  /* background-color: yellow; */
+  display: flex;
+  flex-direction: row;
+}
+
 #questionContainer {
   /* background-color: green; */
 	display: flex;
 	flex-direction: column;
 }
 
-#pdf-viewer-container{
-  position: absolute;
-	/* background-color: yellow; */
-	display: flex;
-	flex-direction: row;
-}
-/* 
-#test-p{
-	position: relative;
-	left: 20px;
-} */
-
 .questionBox {
   background-color: #D9D9D9;
   position: relative;
-  margin: 500px 0px;
+  margin: 450px 0px;
   left: 50px;
   border-radius: 1em;
   padding: 20px;
 
-  max-width: 450px;
+  max-width: 250px;
 
   /* height: 100px; */
   /* width: 100px; */
@@ -49,6 +59,9 @@
 
 .questionText {
   white-space: pre-line;  /* allows \n to work: https://stackoverflow.com/a/39325471/14154848 */
+  font-size: 12px;
+  margin-bottom: 2px;
+  /* background-color: orange; */
 }
 
 /* Default styles below */
@@ -666,7 +679,7 @@ html[dir='rtl'] #sidebarContent {
   box-shadow: inset 1px 0 0 hsla(0,0%,0%,.25);
 }
 
-#viewerContainer {
+/* #viewerContainer {
   overflow: auto;
   -webkit-overflow-scrolling: touch;
   position: absolute;
@@ -675,7 +688,7 @@ html[dir='rtl'] #sidebarContent {
   bottom: 0;
   left: 0;
   outline: none;
-}
+} */
 #viewerContainer:not(.pdfPresentationMode) {
   -webkit-transition-duration: 200ms;
           transition-duration: 200ms;
