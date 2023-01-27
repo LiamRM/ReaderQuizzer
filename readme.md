@@ -18,6 +18,7 @@ You can start with this very repository:
 ### Todo (in order of priority)
 - [ ] Correctly position questions to the right of the PDF Viewer
 - [ ] Get the height of the page in JS and set the questionBox margin to said height (based on the zoom factor?)
+- [ ] Generate questions by section (not by page)
 - [ ] Incorporate official ChatGPT API
 - [x] Fix 'generate questions' icon
 - [ ] Generate questions for ALL pages
@@ -25,3 +26,14 @@ You can start with this very repository:
 - [ ] Add loading indicator when ChatGPT questions are loading
 - [x] Remove initial visor.html page (?)
 - [ ] automatically open localhost:4000 with `nodemon server.mjs` command?
+- [ ] Save questions to file with one question per line, blank line separating page questions
+- [ ] Render a `<p>` tag per question
+- [x] Read questions from file into questionArray
+- [x] make questionArray an array of arrays
+
+
+### Under the hood
+
+This web app makes use of NodeJS + ExpressJS to host a local server that passes data to and from a simple front end.
+
+The EJS templating engine is used to dynamically render the ChatGPT text once it is obtained on the Node server.

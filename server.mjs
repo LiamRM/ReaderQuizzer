@@ -28,7 +28,7 @@ app.set('views', path.join(__dirname, '/web/'))
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
-import {writeFileSync, readFileSync} from 'fs';
+import {writeFileSync, readFileSync, createWriteStream} from 'fs';
 import pdfjsLib from 'pdfjs-dist';
 import dotenv from 'dotenv-safe';
 import { oraPromise } from 'ora';
@@ -40,11 +40,7 @@ app.listen(4000, () => console.log('listening on port 4000'));
 dotenv.config()
 
 /* variables */
-let questionArray = [
-  "1. What were the three overarching factors that contributed to the collapse of Rome? \n2. What period of Roman history is characterized by stability, economic growth, and territorial expansion?\n3. How did the influx of Roman territory and cultural diversity make it difficult to govern?\n4. What changes were made in an effort to maintain Roman control?",
-  "1. What was the main cause of disunity in the Roman Empire? \n2. What was the role of ineffective leadership and political instability in the collapse of Rome? \n3. How did the actions of the emperors, such as Commodus, contribute to the economic decline of Rome? \n4. What was the impact of the trade deficit in the east on Rome's economy and government actions?",
-  "1. How did the Roman Empire's overexpansion and loss of territory contribute to its economic decline? \n2. What was the impact of social inequality and mistreatment of certain groups in Rome on the empire's stability? \n3. How did internal dissent and riots contribute to the fall of Rome? \n4. How did the rise of Christianity and the acceptance of it by Roman leaders like Constantine contribute to the fall of Rome?"
-];
+let questionArray = readQuestionsFromFile("result.txt");
 var fileName = "default.pdf";
 
 
@@ -80,10 +76,75 @@ async function GetTextFromPDF(path) {
 }
 
 
+
 /**
- * Gets learning questions from ChatGPT based on a text array.
+ * Reads learning questions from .txt file into array. Each page/paragraph is a subarray where each elem is a question.
+ * @param {string} path - path to .txt file
+ * @returns
+ * array of learning questions, each elem is an array of questions for a page/paragraph
+ */
+function readQuestionsFromFile(path) {
+  const text = readFileSync(path, {encoding:'utf-8', flag:'r'});
+  const textArray = text.split('\n'); // might need to be \r\n if .txt file made manually on Windows
+
+  let questionArr = [];
+  let tempArr = [];
+  textArray.forEach((elem) => {
+    if(elem != ''){
+      tempArr.push(elem);
+    }
+    else {
+      questionArr.push(tempArr);
+      tempArr = [];
+    }
+  });
+
+  // push the last page's questions
+  questionArr.push(tempArr);
+  // filter out empty array elems
+  questionArr = questionArr.filter(elem => elem.length != 0);
+
+  return questionArr;
+}
+
+
+
+
+/**
+ * Saves questionArray (array of arrays) to file, result.txt
+ * @param {array} arr - array of page/paragraph arrays, where each elem is a question
+ * @param {string} fname - name of file. Default is 'result.txt'
+ */
+function saveQuestionsToFile(arr, fname = "result.txt") {
+  var file = createWriteStream(fname);
+  file.on('error', function(err) { console.log("File write error:", err); });
+  arr.forEach(pageArr => {
+    pageArr.forEach(question => { file.write(question + '\n'); });
+    file.write('\n');
+  });
+  file.end();
+}
+
+
+/**
+ * Convert a text response from ChatGPT to an array of learning questions
+ * @param {string} response - ChatGPT text response of learning questions for a page/paragraph
+ * @returns {array}
+ * an array of a page/paragraph's learning questions
+ */
+function structureResponse(response) {
+  let tempArr = response.split('\n');
+  
+  // get rid of '' elements
+  tempArr = tempArr.filter(question => question != '');
+  return tempArr;
+}
+
+
+/**
+ * Gets learning questions from ChatGPT based on an array of page/paragraph text.
  * @param {array} textArray - array of PDF text, each elem is a page/paragraph of text
- * @returns {array} resultArray - array of learning questions, each elem is questions for a page/paragraph
+ * @returns {array} resultArray - array of learning questions, each elem is an array of questions for a page/paragraph
  */
 async function gptFunc(textArray) {
 
@@ -100,10 +161,10 @@ async function gptFunc(textArray) {
   let res = await oraPromise(api.sendMessage(prompt), {
     text: prompt
   })
-  resultArray[0] = res.response + '\n';
+  resultArray[0] = structureResponse(res.response)
   
-  // Loop through remaining pages and generate learning questions (only first 3 for testing instead of textArray.length)
-  for (let index = 1; index < 3; index++) {
+  // Loop through remaining pages and generate learning questions (set loop to index < textArray.length to go through all pages)
+  for (let index = 1; index < textArray.length; index++) {
     prompt = 'Write 4 learning questions about the following text: ' + textArray[index].trimEnd();
     
     res = await oraPromise(
@@ -115,11 +176,8 @@ async function gptFunc(textArray) {
         text: prompt
       }
     )
-    resultArray[index] = res.response;
+    resultArray[index] = structureResponse(res.response);
   }
-
-  // Write result to file
-  writeFileSync('newresult.txt', resultArray.join());
     
   // close the browser at the end
   await api.closeSession()
@@ -151,6 +209,9 @@ app.post('/static/viewer.html', function(req, res) {
     gptFunc(pageTexts).then(lqs => {
       console.log(lqs);
       questionArray = lqs;
+
+      // Write result to file
+      saveQuestionsToFile(questionArray);
 
       res.redirect('/static/viewer.html' + '?file=' + fileName);
     });
