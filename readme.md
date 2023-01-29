@@ -32,6 +32,13 @@ You can start with this very repository:
 - [ ] Add loading indicator when ChatGPT questions are loading
 
 
+
+### Options
+- Questions by section
+- Change # of LQs
+- Show / hide LQs
+
+
 ### Under the hood
 
 This web app makes use of NodeJS + ExpressJS to host a local server that passes data to and from a simple front end.
