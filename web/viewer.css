@@ -38,30 +38,42 @@
 }
 
 #questionContainer {
-  /* background-color: green; */
+  background-color: green;
 	display: flex;
 	flex-direction: column;
+
+  margin-top: 28px; /* sets questionContainer in line with pdfViewerContainer */
+}
+
+.pageQuestionContainer {
+  background-color: lightgreen;
+  display: flex;
+  flex-direction: column;
+  
+  /* centers the questionBox within each page at 100% view */
+  justify-content: center;
+
+  /* height of PDF page with gap, found via trial and error */
+  height: 1067px; 
 }
 
 .questionBox {
   background-color: #D9D9D9;
   position: relative;
-  margin: 450px 0px;
   left: 50px;
   border-radius: 1em;
   padding: 20px;
-
+  
+  /* default page height is 1056px, width is 816px; */
+  /* margin: 425px 0px; */
   max-width: 250px;
-
-  /* height: 100px; */
-  /* width: 100px; */
 }
 
 .questionText {
+  /* background-color: orange; */
   white-space: pre-line;  /* allows \n to work: https://stackoverflow.com/a/39325471/14154848 */
   font-size: 12px;
-  margin-bottom: 2px;
-  /* background-color: orange; */
+  margin-bottom: 10px;
 }
 
 /* Default styles below */

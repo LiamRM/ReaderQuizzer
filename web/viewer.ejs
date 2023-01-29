@@ -298,17 +298,19 @@ See https://github.com/adobe-type-tools/cmap-resources
           <!-- TODO: change this to a single page viewer? -->
           <div id="pdf-viewer-container">
             <div id="viewer" class="pdfViewer"></div>
+            
             <div id="questionContainer">
-
-              <!-- OUTPUT OF CHATGPT LEARNING QUESTIONS -->
-              <% for( let index = 0; index < questionArray.length; index++ ) { %>
+            <!-- OUTPUT OF CHATGPT LEARNING QUESTIONS -->
+            <% for( let index = 0; index < questionArray.length; index++ ) { %>
+              <div class="pageQuestionContainer">
                 <div class="questionBox">
                   <% for( let innerIndex = 0; innerIndex < questionArray[index].length; innerIndex++ ) { %>
                     <p class="questionText"> <%= questionArray[index][innerIndex] %>  </p>
                   <% } %>
                 </div>
-              <% } %>
-              
+              </div>
+            <% } %>
+                
             </div>
           </div>
         </div>
