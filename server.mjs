@@ -9,7 +9,7 @@
 import helmet from 'helmet';
 import bodyParser from 'body-parser';
 import path from 'path';
-import { ChatGPTAPIBrowser } from 'chatgpt';
+import { ChatGPTAPI } from 'chatgpt';
 import express from 'express';
 const app = express();
 
@@ -40,7 +40,7 @@ app.listen(4000, () => console.log('listening on port 4000'));
 dotenv.config()
 
 /* variables */
-let questionArray = readQuestionsFromFile("result.txt");
+let questionArray = readQuestionsFromFile("web/questions/default.txt");
 var fileName = "default.pdf";
 
 
@@ -75,7 +75,10 @@ async function GetTextFromPDF(path) {
   return pageTexts;
 }
 
-
+// manually output PDF text to console
+// GetTextFromPDF("web/patrick.pdf").then(pageTexts => {
+//   console.log(pageTexts);
+// });
 
 /**
  * Reads learning questions from .txt file into array. Each page/paragraph is a subarray where each elem is a question.
@@ -85,7 +88,7 @@ async function GetTextFromPDF(path) {
  */
 function readQuestionsFromFile(path) {
   const text = readFileSync(path, {encoding:'utf-8', flag:'r'});
-  const textArray = text.split('\n'); // might need to be \r\n if .txt file made manually on Windows
+  const textArray = text.split('\r\n'); // might need to be \r\n if .txt file made manually on Windows
 
   let questionArr = [];
   let tempArr = [];
@@ -115,7 +118,7 @@ function readQuestionsFromFile(path) {
  * @param {array} arr - array of page/paragraph arrays, where each elem is a question
  * @param {string} fname - name of file. Default is 'result.txt'
  */
-function saveQuestionsToFile(arr, fname = "result.txt") {
+function saveQuestionsToFile(arr, fname = "web/questions/result.txt") {
   var file = createWriteStream(fname);
   file.on('error', function(err) { console.log("File write error:", err); });
   arr.forEach(pageArr => {
@@ -151,21 +154,20 @@ async function gptFunc(textArray) {
   let prompt = 'Write 4 learning questions about the following text: ' + textArray[0].trimEnd();
   let resultArray = [];
   
-  const api = new ChatGPTAPIBrowser({
-    email: process.env.OPENAI_EMAIL,
-    password: process.env.OPENAI_PASSWORD
+  const api = new ChatGPTAPI({
+    apiKey: process.env.OPENAI_API_KEY
   })
-  await api.initSession()
 
   // First page
   let res = await oraPromise(api.sendMessage(prompt), {
-    text: prompt
-  })
-  resultArray[0] = structureResponse(res.response)
+    text: 'Loading questions for Page 1'
+  });
+  resultArray[0] = structureResponse(res.text)
   
   // Loop through remaining pages and generate learning questions (set loop to index < textArray.length to go through all pages)
   for (let index = 1; index < textArray.length; index++) {
     prompt = 'Write 4 learning questions about the following text: ' + textArray[index].trimEnd();
+    pageNum = index + 1
     
     res = await oraPromise(
       api.sendMessage(prompt, {
@@ -173,14 +175,12 @@ async function gptFunc(textArray) {
         parentMessageId: res.messageId
       }),
       {
-        text: prompt
+        text: 'Loading questions for Page ' + pageNum
       }
     )
-    resultArray[index] = structureResponse(res.response);
+    resultArray[index] = structureResponse(res.text);
   }
     
-  // close the browser at the end
-  await api.closeSession()
   return resultArray;
 }
 
