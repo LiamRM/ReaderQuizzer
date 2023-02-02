@@ -37,6 +37,7 @@ You can start with this very repository:
 - Questions by section
 - Change # of LQs
 - Show / hide LQs
+- specify which page the LQs should start at
 
 
 ### Under the hood

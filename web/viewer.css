@@ -38,7 +38,7 @@
 }
 
 #questionContainer {
-  background-color: green;
+  /* background-color: green; */
 	display: flex;
 	flex-direction: column;
 
@@ -46,7 +46,7 @@
 }
 
 .pageQuestionContainer {
-  background-color: lightgreen;
+  /* background-color: lightgreen; */
   display: flex;
   flex-direction: column;
   
@@ -54,7 +54,15 @@
   justify-content: center;
 
   /* height of PDF page with gap, found via trial and error */
-  height: 1067px; 
+  /* DEFAULT vertical, 100% view */
+  height: 1067px;
+
+  /* horizontal, roughly, 100% view */
+  /* height: 820px; */
+
+  /* 110% view */
+  /* height: 900px; */
+  
 }
 
 .questionBox {
