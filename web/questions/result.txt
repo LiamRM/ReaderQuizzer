@@ -1,70 +1,70 @@
-1. What is trace-based just-in-time type specialization in dynamic languages? 
-2. How does the trace-based just-in-time type specialization technique compare with traditional compilers? 
-3. What is the difference between a trace-based dynamic compiler and a method-based dynamic compiler? 
-4. How does the trace-based just-in-time type specialization work in dynamic languages like JavaScript?
+1. What is trace-based just-in-time type specialization for dynamic languages?
+2. Who are the authors of the text and what is their professional affiliation?
+3. What is the purpose of trace-based just-in-time type specialization in dynamic languages?
+4. How does the trace-based compilation technique reconcile speed of compilation and performance of generated machine code?
 
-1. What is a trace in the context of the text? 
-2. How does TraceMonkey solve the problem of nested loops?
-3. What are the contributions of this paper to tracing VM technology?
-4. What is the state machine of TraceMonkey and what is its goal?
+1. What is a trace tree in the context of a tracing VM?
+2. How does the system solve the problem of nested loops in tracing VMs?
+3. What are the contributions made by the TraceMonkey tracing VM? 
+4. What is the overall process of executing an example program in TraceMonkey described in the text?
 
-1. What is the purpose of LIR in TraceMonkey?
-2. What is a guard in LIR and what is its purpose?
-3. How does TraceMonkey determine when to stop recording a trace?
-4. What happens when TraceMonkey encounters an inner loop header that already has a compiled trace during recording?
+1. What is the purpose of LIR in the sample program?
+2. How does TraceMonkey use LIR to optimize performance?
+3. What is a guard in the context of the LIR trace?
+4. How does the TraceMonkey process work in the example described in the text?
 
-1. What is TraceMonkey and what does it do? 
-2. What is a trace in the context of TraceMonkey? 
-3. How does TraceMonkey record traces? 
-4. What are the key optimizations performed during the recording of LIR traces in TraceMonkey?
+1. What are loop traces and how do they differ from extended basic blocks?
+2. What is trace-flavored SSA (or TSSA) in TraceMonkey and what are its components?
+3. How does TraceMonkey optimize complex dynamic language constructs with type specialization and representation specialization?
+4. How does the recording of LIR traces in TraceMonkey handle variables' types and control-flow branches?
 
-1. What are representations in JavaScript and how are they assigned a key?
-2. What is TraceMonkey and how does it support numbers representation?
-3. What is the purpose of guards in TraceMonkey optimization process?
-4. How are trace trees formed and extended in TraceMonkey?
+1. What are the two representations for numbers in TraceMonkey?
+2. What is a guard in TraceMonkey and what does it do?
+3. What is a trace tree in TraceMonkey and how is it formed?
+4. What is the role of the oracle in TraceMonkey's loop compilation process?
 
-1. What is the purpose of extending a trace tree in TraceMonkey? 
-2. What is the reason for blacklisting certain traces in TraceMonkey? 
-3. How does TraceMonkey handle type-unstable loops? 
-4. What are the two choices the system has when execution leaves an inner loop in TraceMonkey?
+1) What is the purpose of extending a trace tree only if the side exit is for a control-flow branch?
+2) Why does the system blacklist traces that have been tried and failed to be recorded? 
+3) How does the implementation avoid spending time finding blacklisted small loops? 
+4) What is the purpose of nested trace tree formation in the compilation process?
 
-1. What is a trace tree in the context of the text? 
-2. What is the purpose of the nesting algorithm described in the text? 
-3. How does the blacklisting algorithm work with nesting according to the text? 
-4. What is the role of NANOJIT in trace tree optimization according to the text?
+1. What is the purpose of the Nesting Algorithm?
+2. How does the Nesting Algorithm determine whether two loops are nested or not?
+3. What happens when an inner tree takes a new side exit during execution of a compiled trace for the outer tree?
+4. How does the blacklisting algorithm work with nesting?
 
-1. What are the optimizations done in nanojit?
-2. What is the process of trace recording and optimization in nanojit?
-3. How does the register allocation algorithm work in nanojit?
-4. What is TraceMonkey and what does it demonstrate?
+1. What is the purpose of using SSA form in traces and what optimizations result from it?  
+2. Can you describe the process of forward and backward optimization filters in nanojit? 
+3. How does the greedy register allocator work in nanojit? 
+4. What is the trace cache in TraceMonkey and how is it used to execute compiled traces?
 
-1. What is the monitor in "When a trace call returns, the monitor restores the interpreter,state"? 
-2. What is the purpose of trace stitching in TraceMonkey? 
-3. How does TraceMonkey record LIR with identical semantics to the currently running interpreter bytecode trace? 
-4. Why does SpiderMonkey need to preempt user program periodically and what is the cost of doing so?
+1. What are the steps involved in restoring the interpreter state when a trace call returns? 
+ 2. What is the significance of minimizing the number of interpreter-to-trace and trace-to-interpreter transitions in performance? 
+ 3. What is trace stitching and how does it work?
+ 4. What is the role of the trace recorder and how does it emit LIR?
 
-1. What is the foreign function interface (FFI) in SpiderMonkey?
-2. How does TraceMonkey call external functions? 
-3. What safety mechanisms are used to handle call-stack access and global variable access while calling external functions from TraceMonkey?
-4. What is the purpose of annotating C functions with their argument types in TraceMonkey's FFI?
+1. What is the purpose of the foreign function interface (FFI) in SpiderMonkey?
+2. How does TraceMonkey handle the out-of-date call stack problem when calling external functions?
+3. What is the purpose of the annotations F,ORCES,S,TACK, and R,EQUIRES,S,TACK when accessing the call stack in the interpreter API? 
+4. How does the VM handle external functions that might reenter the interpreter?
 
-1. What is the purpose of the trace-based JIT compiler?
-2. How does type specialization impact performance in the trace-based JIT compiler?
-3. What benchmark programs perform best with the trace-based JIT compiler compared to other JavaScript interpreters?
-4. What are the limitations of the trace-based JIT compiler and why do certain benchmarks not perform as well?
+1. What is the main focus of the text?
+2. What is the difference between Speedup and a baseline JavaScript interpreter (SpiderMonkey)?
+3. How does type specialization help in improving the performance of programs?
+4. Why does TraceMonkey not perform well on some benchmarks?
 
-1. What is the purpose of trace optimization in dynamic languages?
-2. How does the author's trace compiler outperform other available JavaScript VMs?
-3. What are the performance implications of recording and compiling in the author's trace compiler?
-4. How does the author's trace compiler differ from related work in trace optimization for dynamic languages?
+1. What is meant by trace optimization for dynamic languages?
+2. What is the difference between Rigo's Psyco and LuaJIT with regards to trace optimization?
+3. What was the main goal of Dynamo with regards to profiling?
+4. How did Gal et al. propose to use trace trees in Java?
 
-1. What is the main focus of the paper described in the text?
-2. What is the goal of the technique described in the paper for running dynamic languages efficiently?
-3. How does the trace compiler described in the paper translate a trace to optimized native code?
-4. What are some future plans mentioned in the text for improving the performance of the trace-based JavaScript compiler?
+1. What is the focus of the paper?
+2. How does the trace-based JavaScript compiler work?
+3. What are the results of the experiments mentioned in the paper?
+4. What are the future plans for the trace-based JavaScript compiler?
 
-1. What is the purpose of the text? 
-2. Who is the text representing? 
-3. What are some examples of companies or agencies mentioned in the text? 
-4. What is the purpose of the references listed in the text?
+1. What is the text about? 
+2. What is the purpose of the text?
+3. What does the text say about the National Science Foundation (NSF)? 
+4. What are some of the references mentioned in the text?
 
