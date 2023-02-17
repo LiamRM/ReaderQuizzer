@@ -1,0 +1,43 @@
+1. What is the purpose of the research article? 
+2. What methods were used to produce the range of risk models? 
+3. How was the study cohort selected? 
+4. What are the potential benefits of incorporating longitudinal data and features from clinical documentation into risk prediction modeling?
+
+1. What data sources are used to develop the risk model? 
+2. How does unsupervised learning help in risk modeling? 
+3. What study population was used for the analysis? 
+4. How is the Kalman filter used in this study?
+
+1. What is the purpose of the research article? 
+2. What is the CKD-EPI equation used for? 
+3. What is the role of the Kalman filter in the three time series models? 
+4. What is mean field variational inference and how does it relate to parameter learning in these models?
+
+1. What is the Laboratory Test Kalman Filter? 
+2. What type of data is used by the Text Kalman Filter? 
+3. What is the output of the Laboratory Test and Text Kalman Filter? 
+4. How is model performance evaluated in this study?
+
+1. What are the main risk factors associated with progression from stage III to stage IV CKD? 
+2. Low eGFR at onset of stage III CKD, younger age, male gender, elevated levels of BUN and creatinine, elevated triglycerides and urine protein, decreased levels of hematocrit, hemoglobin, calcium, and serum protein, terms associated with heart failure, diabetes, and dialysis, lower values of bicarbonate, presence of terms associated with asthma.
+
+1. What laboratory tests are associated with increased risk of CKD progression? 
+2. How do the five studied models (Laboratory Test and Text Kalman Filter, Laboratory Test Kalman Filter, Text Kalman Filter, Recent Laboratory Tests, and estimated Glomerular Filtration Rate) differ in terms of performance? 
+3. What variables are taken into account by the Recent Laboratory Tests model? 
+4. How does the Log Hazard Ratios for the Recent Laboratory Tests Model compare to the other models?
+
+1. What features are usually included in contemporary CKD classifiers?  
+2. How does cardiovascular risk increase from stage III to IV CKD? 
+3. What potential benefits may arise from extending the analysis to datasets from different institutions? 
+4. What limitations exist when using non-curated real-world patient characteristics as the data source?
+
+1. What is the primary research question addressed in the article? 
+2. What data analysis methods were used to answer the research question?
+3. What were the results of the study?
+4. What implications does the study have for further research?
+
+1. What is the purpose of the research article? 
+2. What is the primary outcome measured in the study? 
+3. What methods were used to analyze the data? 
+4. What are the implications of the research results?
+

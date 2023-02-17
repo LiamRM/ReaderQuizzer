@@ -39,8 +39,8 @@ app.listen(4000, () => console.log('listening on port 4000'));
 dotenv.config()
 
 /* variables */
-var questionArray = readQuestionsFromFile("web/questions/default.txt");
-var fileName = "default.pdf";
+var questionArray = readQuestionsFromFile("web/questions/phillip2.txt");
+var fileName = "phillip.pdf";
 var numLearningQuestions = 4;
 
 
@@ -52,7 +52,7 @@ var numLearningQuestions = 4;
  */
 async function gptFunc(textArray) {
 
-  let prompt = 'Write ' + numLearningQuestions + ' learning questions about the following text: ' + textArray[0].trimEnd();
+  let prompt = 'Write ' + numLearningQuestions + ' comprehension questions about the following research article: ' + textArray[0].trimEnd();
   let resultArray = [];
   
   const api = new ChatGPTAPI({
@@ -67,7 +67,7 @@ async function gptFunc(textArray) {
   
   // Loop through remaining pages and generate learning questions (set loop to index < textArray.length to go through all pages)
   for (let index = 1; index < textArray.length; index++) {
-    prompt = 'Write ' + numLearningQuestions + ' learning questions about the following text: ' + textArray[index].trimEnd();
+    prompt = 'Write ' + numLearningQuestions + ' comprehension questions about the following research article: ' + textArray[index].trimEnd();
     let pageNum = index + 1
     
     res = await oraPromise(
@@ -112,7 +112,7 @@ app.post('/static/viewer.html', function(req, res) {
       questionArray = lqs;
 
       // Write result to file
-      saveQuestionsToFile(questionArray);
+      saveQuestionsToFile(questionArray, 'web/questions/phillip2.txt');
 
       res.redirect('/static/viewer.html' + '?file=' + fileName);
     });

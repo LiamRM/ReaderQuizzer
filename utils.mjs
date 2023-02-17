@@ -3,25 +3,8 @@
  * https://stackoverflow.com/a/62749284/14154848
  */
 
-import helmet from 'helmet';
-import bodyParser from 'body-parser';
-import path from 'path';
-import { ChatGPTAPI } from 'chatgpt';
-import express from 'express';
-const app = express();
-
-/**
- *  Solution to "__dirname does not exist in ESM": https://stackoverflow.com/a/62892482/14154848
- */ 
-import { fileURLToPath } from 'url';
-import { dirname } from 'path';
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
-
 import {writeFileSync, readFileSync, createWriteStream} from 'fs';
 import pdfjsLib from 'pdfjs-dist';
-import dotenv from 'dotenv-safe';
-import { oraPromise } from 'ora';
 
 
 /**
@@ -65,7 +48,7 @@ async function getTextFromPDF(path) {
  */
 function readQuestionsFromFile(path) {
   const text = readFileSync(path, {encoding:'utf-8', flag:'r'});
-  const textArray = text.split('\r\n'); // might need to be \r\n if .txt file made manually on Windows
+  const textArray = text.split('\n'); // might need to be \r\n if .txt file made manually on Windows
 
   let questionArr = [];
   let tempArr = [];

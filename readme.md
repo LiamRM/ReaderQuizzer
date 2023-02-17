@@ -19,9 +19,10 @@ You can start with this very repository:
 - [x] Correctly position questions to the right of the PDF Viewer at 100% view
 - [ ] Correctly set height of questionBox based on the zoom factor
 - [ ] Generate questions by section (not by page)
-- [ ] Incorporate official ChatGPT API
+- [ ] Structure response from official ChatGPT API
+- [x] Incorporate official ChatGPT API
 - [x] Fix 'generate questions' icon
-- [ ] Generate questions for ALL pages
+- [x] Generate questions for ALL pages
 - [x] Remove initial visor.html page (?)
 - [ ] automatically open localhost:4000 with `nodemon server.mjs` command?
 - [x] Save questions to file with one question per line, blank line separating page questions

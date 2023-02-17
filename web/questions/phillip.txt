@@ -1,0 +1,39 @@
+1. What is the study cohort used to develop and validate the risk models?
+2. What techniques are used to develop the risk models?
+3. How does the model incorporating longitudinal data on clinical documentation and laboratory test results perform in comparison to other models?
+4. How can risk prediction models improve outcomes for patients with CKD?
+
+Questions: 1) How can longitudinal data from patient records be incorporated into risk modeling? 2) How can EHR data be incorporated into a risk modeling paradigm, focusing on two critical data elements of the EHR, laboratory data and clinical narrative? 3) What is the study cohort used for this research? 4) What is the family of models investigated to represent patient documentation?
+
+1. What is the difference in mean age between the development cohort and validation cohort? 
+2. How many independent variables are used for each of the five studied models? 
+3. What is the mean value of 25OH Vitamin D for the development cohort? 
+4. What is the difference between the mean C-reactive protein values for the development and validation cohorts?
+
+1. What is the purpose of the study?
+2. What are the three time series models used in the study?
+3. What was used to evaluate model performance on the validation dataset?
+4. What topics are associated with an increased or decreased risk of progression?
+
+1. What is the average age of the patients in both cohorts?  2. What laboratory variables were associated with higher risk of CKD progression? 3. How did the LTKF model perform compared to the other models? 4. What other variables were associated with lower risk of progression?
+
+1. What are the differences in performance between the LKF, RLT, TKF, and eGFR models? 
+2. What laboratory tests are most valuable for predicting CKD progression? 
+3. Are there any demographic or other factors associated with CKD progression? 
+4. What is the concordance of the LTKF model compared to the other models?
+
+1. What are the most commonly used features in contemporary CKD classifiers? 
+2. How does the inclusion of clinical documentation and other features impact the accuracy of risk prediction models? 
+3. What limitations exist in the current study, and how could they be addressed? 
+4. What are the potential benefits of generalizing the risk model to patient records from other institutions?
+
+1. What are the main objectives of the research article? 
+2. What methods were used to analyze the data? 
+3. What were the findings and results of the study? 
+4. What are the implications of the study's findings and results?
+
+1. What is the association between specialist evaluation in chronic kidney disease and mortality?
+2. How did laboratories reporting estimated glomerular filtration rates influence nephrology consults?
+3. What effect did primary care physicians' use of estimated glomerular filtration rate have on the timing of subspecialty referral decisions?
+4. Does early referral to specialist nephrology services impact the progression to end-stage kidney disease?
+
