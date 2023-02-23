@@ -99,6 +99,22 @@ function structureResponse(response) {
   
   // get rid of '' elements
   tempArr = tempArr.filter(question => question != '');
+
+  // edge case where questions are not separated by \n
+  if(tempArr.length == 1) {
+    tempArr = tempArr[0].split('?');
+    // get rid of '' elements
+    tempArr = tempArr.filter(question => question != '');
+
+    // remove "Questions: " from first elem
+    if(tempArr[0].startsWith("Questions: ")) {
+      tempArr[0] = tempArr[0].slice(11);
+    }
+
+    tempArr = tempArr.map(elem => elem.trim());
+    tempArr = tempArr.map(elem => elem + '?');
+  }
+  
   return tempArr;
 }
 

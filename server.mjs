@@ -44,7 +44,6 @@ var fileName = "phillip.pdf";
 var numLearningQuestions = 4;
 
 
-
 /**
  * Gets learning questions from ChatGPT based on an array of page/paragraph text.
  * @param {array} textArray - array of PDF text, each elem is a page/paragraph of text

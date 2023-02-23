@@ -1,43 +1,47 @@
-1. What is the purpose of the research article? 
-2. What methods were used to produce the range of risk models? 
-3. How was the study cohort selected? 
-4. What are the potential benefits of incorporating longitudinal data and features from clinical documentation into risk prediction modeling?
+1. What is the purpose of the research article?
+2. How does the study cohort for this research article differ from other cohorts?
+3. What methods were used to produce a range of risk models?
+4. How did the authors evaluate the models they created?
 
-1. What data sources are used to develop the risk model? 
-2. How does unsupervised learning help in risk modeling? 
-3. What study population was used for the analysis? 
-4. How is the Kalman filter used in this study?
+Comprehension Questions:
+1. What data sources are used to develop the risk model?
+2. How was the study cohort divided into development and validation cohorts?
+3. What is latent Dirichlet allocation (LDA) and how is it used in this study?
+4. How is the Kalman filter used to generate the time series model?
 
-1. What is the purpose of the research article? 
-2. What is the CKD-EPI equation used for? 
-3. What is the role of the Kalman filter in the three time series models? 
-4. What is mean field variational inference and how does it relate to parameter learning in these models?
+1. What is the purpose of the research article?
+2. What is mean field variational inference?
+3. What are the five studied models in the article?
+4. How does the Kalman filter work to fit the development cohort data?
 
-1. What is the Laboratory Test Kalman Filter? 
-2. What type of data is used by the Text Kalman Filter? 
-3. What is the output of the Laboratory Test and Text Kalman Filter? 
-4. How is model performance evaluated in this study?
+1. What are the three time series models described in the research article? 
+2. What is the measure used to evaluate model performance on the validation dataset? 
+3. What topics are associated with an increased risk of progression? 
+4. What topics are associated with a decreased risk of progression?
 
-1. What are the main risk factors associated with progression from stage III to stage IV CKD? 
-2. Low eGFR at onset of stage III CKD, younger age, male gender, elevated levels of BUN and creatinine, elevated triglycerides and urine protein, decreased levels of hematocrit, hemoglobin, calcium, and serum protein, terms associated with heart failure, diabetes, and dialysis, lower values of bicarbonate, presence of terms associated with asthma.
+What are the 4 comprehension questions about the research article?
+1. What was the average age in both cohorts?
+2. What variables were associated with increased risk of progression in the eGFR model?
+3. What variables were associated with increased risk of progression in the RLT Risk model?
+4. What variables were associated with increased risk of progression in the LTKF Model?
 
-1. What laboratory tests are associated with increased risk of CKD progression? 
-2. How do the five studied models (Laboratory Test and Text Kalman Filter, Laboratory Test Kalman Filter, Text Kalman Filter, Recent Laboratory Tests, and estimated Glomerular Filtration Rate) differ in terms of performance? 
-3. What variables are taken into account by the Recent Laboratory Tests model? 
-4. How does the Log Hazard Ratios for the Recent Laboratory Tests Model compare to the other models?
+Q1: What type of information is used in most developed risk models?
+Q2: What are the log hazard ratios associated with the RLT model?
+Q3: What is the concordance of the LTKF model?
+Q4: What laboratory tests are associated with CKD progression?
 
-1. What features are usually included in contemporary CKD classifiers?  
-2. How does cardiovascular risk increase from stage III to IV CKD? 
-3. What potential benefits may arise from extending the analysis to datasets from different institutions? 
-4. What limitations exist when using non-curated real-world patient characteristics as the data source?
+1. What are the features used in contemporary CKD classifiers?
+2. How does the inclusion of clinical documentation improve risk prediction models?
+3. What are the potential limitations of using a single institution's data for risk prediction?
+4. What are the potential benefits of extending the analysis to datasets from different institutions?
 
-1. What is the primary research question addressed in the article? 
-2. What data analysis methods were used to answer the research question?
-3. What were the results of the study?
-4. What implications does the study have for further research?
+1. What is the purpose of the research article?
+2. What are the main findings of the study?
+3. What methods were used to analyze the data?
+4. What implications can be drawn from the results?
 
-1. What is the purpose of the research article? 
-2. What is the primary outcome measured in the study? 
-3. What methods were used to analyze the data? 
-4. What are the implications of the research results?
+1. What was the primary aim of the research article? 
+2. What were the findings of the research article?
+3. What methods were used to conduct the research?
+4. How did the research results compare with previous studies on the topic?
 
