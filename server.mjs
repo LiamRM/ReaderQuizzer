@@ -39,8 +39,8 @@ app.listen(4000, () => console.log('listening on port 4000'));
 dotenv.config()
 
 /* variables */
-var questionArray = readQuestionsFromFile("web/questions/phillip2.txt");
-var fileName = "phillip.pdf";
+var questionArray = readQuestionsFromFile("web/questions/sam.txt");
+var fileName = "sam.pdf";
 var numLearningQuestions = 4;
 
 
@@ -111,7 +111,7 @@ app.post('/static/viewer.html', function(req, res) {
       questionArray = lqs;
 
       // Write result to file
-      saveQuestionsToFile(questionArray, 'web/questions/phillip2.txt');
+      saveQuestionsToFile(questionArray, 'web/questions/sam.txt');
 
       res.redirect('/static/viewer.html' + '?file=' + fileName);
     });
