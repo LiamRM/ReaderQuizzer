@@ -39,8 +39,8 @@ app.listen(4000, () => console.log('listening on port 4000'));
 dotenv.config()
 
 /* variables */
-var questionArray = readQuestionsFromFile("web/questions/sam.txt");
-var fileName = "sam.pdf";
+var questionArray = readQuestionsFromFile("web/questions/linearalg.txt");
+var fileName = "linearalg.pdf";
 var numLearningQuestions = 4;
 
 
@@ -105,13 +105,15 @@ app.post('/static/viewer.html', function(req, res) {
   // TODO: Get the fileName dynamically from opening a new file
   // ex: fileName = req.body.filename ...
 
+  console.log("Body:", req.body);
+
   getTextFromPDF("web/" + fileName).then(pageTexts => {
     gptFunc(pageTexts).then(lqs => {
       console.log(lqs);
       questionArray = lqs;
 
       // Write result to file
-      saveQuestionsToFile(questionArray, 'web/questions/sam.txt');
+      saveQuestionsToFile(questionArray, 'web/questions/linearalg.txt');
 
       res.redirect('/static/viewer.html' + '?file=' + fileName);
     });

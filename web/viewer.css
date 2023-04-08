@@ -45,6 +45,14 @@
   margin-top: 10px; /* sets questionContainer in line with pdfViewerContainer */
 }
 
+#toolbarViewerRightForm {
+  /* background-color: green; */
+
+  /* vertically center the analysis/comprehension elements */
+  display: flex;
+  align-items: center;
+}
+
 .pageQuestionContainer {
   /* background-color: lightgreen; */
   display: flex;
@@ -84,8 +92,137 @@
   /* background-color: orange; */
   white-space: pre-line;  /* allows \n to work: https://stackoverflow.com/a/39325471/14154848 */
   font-size: 12px;
+  /* margin-bottom: 10px; */
+}
+
+.answerText {
+  /* background-color: orange; */
+  white-space: pre-line;  /* allows \n to work: https://stackoverflow.com/a/39325471/14154848 */
+  font-size: 12px;
+  font-style: italic;
   margin-bottom: 10px;
 }
+
+
+.dropdown {
+  position: relative;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+
+  background-color: #4C4C4C;
+  width: 230px;
+  /* height: 200px; */
+  border-radius: 5px;
+}
+
+.dropdown-header-text {
+  font-family: 'Open Sans', sans-serif;
+  font-style: normal;
+  font-size: 16px;
+  font-weight: 600;
+  color: #FFFFFF;
+  /* top | left and right | bottom */
+  margin: 1em 1em 0.5em;
+}
+
+.dropdown-subtext {
+  font-family: 'Open Sans', sans-serif;
+  font-style: normal;
+  font-size: 12px;
+  margin-left: 10px;
+
+  color: #FFFFFF;
+}
+
+.btn-check {
+  margin-left: 1.5em;
+}
+
+.submit-btn {
+  margin: 1em 0;
+  padding: 0.5em 1em;
+
+  font-family: 'Open Sans', sans-serif;
+  font-style: normal;
+  font-size: 16px;
+  font-weight: 600;
+  color: #FFFFFF;
+
+  background-color: #3E74FF;
+  border-radius: 3px;
+}
+
+.ctn-center {
+  width: 100%;
+  text-align: center;
+}
+
+.ctn-radiobtns {
+  display: flex;
+  flex-direction: column;
+}
+
+.radio-button-group {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 2px;
+}
+
+
+.slidecontainer {
+  width: 100%; /* Width of the outside container */
+}
+
+/* The slider itself */
+.slider {
+  -webkit-appearance: none;
+  width: 75%;
+  height: 5px;
+  border-radius: 4px;  
+  background: #8C8C8C;
+  outline: none;
+  opacity: 0.7;
+  -webkit-transition: .2s;
+  transition: opacity .2s;
+
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%; 
+  background: #D9D9D9;
+  cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: #D9D9D9;
+  cursor: pointer;
+}
+
+.slider-label {
+  font-family: 'Open Sans', sans-serif;
+  font-style: normal;
+  font-size: 16px;
+  font-weight: 600;
+  color: #FFFFFF;
+}
+
+
+
+
 
 /* Default styles below */
 

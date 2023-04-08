@@ -31,6 +31,10 @@ See https://github.com/adobe-type-tools/cmap-resources
 
     <link rel="stylesheet" href="/static/viewer.css">
 
+    <!-- GOOGLE FONTS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
 
 <!-- This snippet is used in production (included from viewer.html) -->
 <link rel="resource" type="application/l10n" href="locale/locale.properties">
@@ -212,10 +216,35 @@ See https://github.com/adobe-type-tools/cmap-resources
                 <!-- ChatGPT button! -->
                 
                 <form method="post" id="toolbarViewerRightForm">
+                  <div class="dropdown">
+                    <button type="button" id="chatgpt" class="toolbarButton chatgpt hiddenLargeView dropdown-button" title="Generate ChatGPT Questions" tabindex="30" data-l10n-id="chatgpt">
+                      <span data-l10n-id="chatgpt_label">Generate ChatGPT Questions</span>
+                    </button>
+                    
+                    <div class="dropdown-menu hidden">
+                      <p class="dropdown-header-text">Question type</p>
+                      <div class="ctn-radiobtns">
+                        <div class="radio-button-group">
+                          <input type="radio" class="btn-check" name="question_type" id="option1" autocomplete="off" value="Comprehension" checked>
+                          <label class="dropdown-subtext" for="option1">Comprehension</label>
+                        </div>
+                        <div class="radio-button-group">
+                          <input type="radio" class="btn-check" name="question_type" id="option2" value="Analysis" autocomplete="off">
+                          <label class="dropdown-subtext" for="option2">Analysis</label>
+                        </div>
+                      </div>
 
-                  <button type="submit" id="chatgpt" class="toolbarButton chatgpt hiddenLargeView" title="Generate ChatGPT Questions" tabindex="30" data-l10n-id="chatgpt">
-                    <span data-l10n-id="chatgpt_label">Generate ChatGPT Questions</span>
-                  </button>
+                      <p class="dropdown-header-text"># Questions per page</p>
+                      <div class="ctn-center">
+                        <div class="slidecontainer">
+                          <p id="slider-label" class="slider-label"></p>
+                          <input type="range" min="1" max="10" name="num_questions" value="4" class="slider" id="questionNumRange">
+                        </div>
+                      
+                        <button class="submit-btn" type="submit">Generate Questions</button>
+                      </div>
+                    </div>
+                  </div>
 
                 </form>
 
@@ -306,6 +335,7 @@ See https://github.com/adobe-type-tools/cmap-resources
                 <div class="questionBox">
                   <% for( let innerIndex = 0; innerIndex < questionArray[index].length; innerIndex++ ) { %>
                     <p class="questionText"> <%= questionArray[index][innerIndex] %>  </p>
+                    <p class="answerText">Show Answer</p>
                   <% } %>
                 </div>
               </div>
@@ -420,5 +450,10 @@ See https://github.com/adobe-type-tools/cmap-resources
 
     </div> <!-- outerContainer -->
     <div id="printContainer"></div>
+
   </body>
+
+  <!-- Drop-down menu -->
+  <script src="/static/utils.js"></script>
+
 </html>

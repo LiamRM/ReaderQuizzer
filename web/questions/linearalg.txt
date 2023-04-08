@@ -1,0 +1,55 @@
+1. What is an algebra?
+2. What is a geometric vector?
+3. How can two geometric vectors be added?
+4. What are some examples of vector objects?
+
+1. What is a polynomial? 
+2. How is a polynomial different from a geometric vector?
+3. What happens when two audio signals are added together?
+4. What is the benefit of considering elements of Rⁿ as vectors?
+
+Q1: What is the objective of Example 2.1? 
+Q2: How many units of resource R_i are needed to produce a unit of product N_j? 
+Q3: How can linear algebra help in solving the problem presented in Example 2.1? 
+Q4: What resources are available to learn about linear algebra?
+
+Q1: What is the general form of a system of linear equations? 
+Q2: What is an example of a system of linear equations that has no solution? 
+Q3: What is the only possible and unique solution to example 2.5? 
+Q4: What is the free variable in equation 2.7?
+
+1. What is the solution space of a system of two linear equations with two variables?
+2. How can the solution set of a real-valued system of linear equations be interpreted?
+3. What does linear regression solve in Chapter 9?
+4. How can a system of linear equations with two variables be geometrically interpreted?
+
+What is a matrix?
+What is the definition of matrix addition?
+What is the size of the matrices in the product C = AB?
+What are row/column vectors?
+
+1. What is the definition of the identity matrix? 
+2. How is the dot product between two vectors denoted? 
+3. In what cases can two matrices be multiplied? 
+4. How does matrix multiplication differ from element-wise multiplication?
+
+1) What is matrix multiplication?
+2) What are the properties of matrices?
+3) What is an identity matrix?
+4) What is the inverse and transpose of a matrix?
+
+1. What is the determinant of a 2x2 matrix?
+2. What is an inverse matrix?
+3. What is a transpose matrix?
+4. What are the properties of inverses and transposes?
+
+Q1: What is the definition of associativity?
+Q2: How does distributivity allow us to move scalar values around?
+Q3: What is the compact representation of a system of linear equations?
+Q4: What is the product of Ax in a linear combination?
+
+1. What is the general form of an equation system? 
+2. How can matrices be used to formulate systems of linear equations? 
+3. What is the particular solution of the example system of linear equations? 
+4. How can the third column of the example system of linear equations be expressed using the first two columns?
+
