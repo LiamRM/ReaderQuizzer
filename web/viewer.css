@@ -95,12 +95,39 @@
   /* margin-bottom: 10px; */
 }
 
+.showAnswerLabel {
+  white-space: pre-line;  /* allows \n to work: https://stackoverflow.com/a/39325471/14154848 */
+  font-size: 12px;
+  font-style: italic;
+  margin-top: 5px;
+
+  color: #464646;
+}
+
 .answerText {
   /* background-color: orange; */
   white-space: pre-line;  /* allows \n to work: https://stackoverflow.com/a/39325471/14154848 */
   font-size: 12px;
   font-style: italic;
+  margin-top: 5px;
+
+  color: #464646;
+}
+
+.answerBox {
+  display: flex;
+  flex-direction: row;
+
   margin-bottom: 10px;
+}
+
+.answerBox:hover{
+  cursor: pointer;
+}
+
+.answerIcon {
+  width: 24px;
+  height: 24px;
 }
 
 

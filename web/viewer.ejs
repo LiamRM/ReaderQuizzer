@@ -334,8 +334,17 @@ See https://github.com/adobe-type-tools/cmap-resources
               <div class="pageQuestionContainer">
                 <div class="questionBox">
                   <% for( let innerIndex = 0; innerIndex < questionArray[index].length; innerIndex++ ) { %>
-                    <p class="questionText"> <%= questionArray[index][innerIndex] %>  </p>
-                    <p class="answerText">Show Answer</p>
+                    <!-- Only evenly indexed elements are questions -->
+                    <% if(innerIndex % 2 == 0) { %>
+                      <p class="questionText"> <%= questionArray[index][innerIndex] %>  </p>
+                      <div class="answerBox">
+                        <img src="/static/images/expand.svg" class="answerIcon" />
+                        <p class="showAnswerLabel">Show Answer</p>
+
+                        <!-- Next index is the answer to the question -->
+                        <p class="answerText hidden"> <%= questionArray[index][innerIndex + 1] %> </p>
+                      </div>
+                    <% } %>
                   <% } %>
                 </div>
               </div>
