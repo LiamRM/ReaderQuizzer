@@ -15,7 +15,7 @@ import dotenv from 'dotenv-safe';
 import { oraPromise } from 'ora';
 
 /* importing utils */
-import { getTextFromPDF, readQuestionsFromFile, saveQuestionsToFile, structureResponse } from './utils.mjs';
+import { getTextFromPDF, readQuestionsFromFile, saveQuestionsToFile, structureRegex, structureResponse } from './utils.mjs';
 
 /**
  *  Solution to "__dirname does not exist in ESM": https://stackoverflow.com/a/62892482/14154848
@@ -55,15 +55,15 @@ async function gptQuestionFunc(textArray, questionType = 'Comprehension', numQue
   let prompt = '';
   switch (questionType) {
     case 'Comprehension':
-      prompt = 'Write ' + numQuestions + ' comprehension questions followed by answers to the questions about the following research article: "' + textArray[0].trimEnd()+'".';
+      prompt = 'Write ' + numQuestions + ' comprehension questions followed by answers to the questions on a new line about the following research article: "' + textArray[0].trimEnd()+'".';
       break;
     
     case 'Analysis':
-      prompt = 'Analysis questions are questions that force the reader to reflect and expand beyond the scope of the paper. These types of questions require less regurgitation and more sustained thought, forcing the reader to identify reasons or motives, identify relations across texts, and reach a conclusion. For example, analysis questions include “What are the limitations of this paper?”, “What are the weaknesses in this writer’s argument?”, and “How does the program in this paper compare to existing programs?”. Based on this definition, write ' + numQuestions + ' analysis questions followed by answers to the questions about the following research article: "' + textArray[0].trimEnd() + '".';
+      prompt = 'Analysis questions are questions that force the reader to reflect and expand beyond the scope of the paper. These types of questions require less regurgitation and more sustained thought, forcing the reader to identify reasons or motives, identify relations across texts, and reach a conclusion. For example, analysis questions include “What are the limitations of this paper?”, “What are the weaknesses in this writer’s argument?”, and “How does the program in this paper compare to existing programs?”. Based on this definition, write ' + numQuestions + ' analysis questions followed by answers to the questions on a new line about the following research article: "' + textArray[0].trimEnd() + '".';
       break;
 
     default:
-      prompt = 'Write ' + numQuestions + ' comprehension questions followed by answers to the questions about the following research article: "' + textArray[0].trimEnd() + '".';
+      prompt = 'Write ' + numQuestions + ' comprehension questions followed by answers to the questions on a new line about the following research article: "' + textArray[0].trimEnd() + '".';
       break;
   }
   let resultArray = [];
@@ -79,18 +79,19 @@ async function gptQuestionFunc(textArray, questionType = 'Comprehension', numQue
   resultArray[0] = structureResponse(res.text)
   
   // Loop through remaining pages and generate learning questions (set loop to index < textArray.length to go through all pages)
+  // for (let index = 1; index < 4; index++) {
   for (let index = 1; index < textArray.length; index++) {
     switch (questionType) {
       case 'Comprehension':
-        prompt = 'Write ' + numQuestions + ' comprehension questions followed by answers to the questions about the following research article: "' + textArray[index].trimEnd()+'".';
+        prompt = 'Write ' + numQuestions + ' comprehension questions followed by answers to the questions on a new line about the following research article: "' + textArray[index].trimEnd()+'".';
         break;
       
       case 'Analysis':
-        prompt = 'Analysis questions are questions that force the reader to reflect and expand beyond the scope of the paper. These types of questions require less regurgitation and more sustained thought, forcing the reader to identify reasons or motives, identify relations across texts, and reach a conclusion. For example, analysis questions include “What are the limitations of this paper?”, “What are the weaknesses in this writer’s argument?”, and “How does the program in this paper compare to existing programs?”. Based on this definition, write ' + numQuestions + ' analysis questions followed by answers to the questions about the following research article: "' + textArray[index].trimEnd() + '".';
+        prompt = 'Analysis questions are questions that force the reader to reflect and expand beyond the scope of the paper. These types of questions require less regurgitation and more sustained thought, forcing the reader to identify reasons or motives, identify relations across texts, and reach a conclusion. For example, analysis questions include “What are the limitations of this paper?”, “What are the weaknesses in this writer’s argument?”, and “How does the program in this paper compare to existing programs?”. Based on this definition, write ' + numQuestions + ' analysis questions followed by answers to the questions on a new line about the following research article: "' + textArray[index].trimEnd() + '".';
         break;
   
       default:
-        prompt = 'Write ' + numQuestions + ' comprehension questions followed by answers to the questions about the following research article: "' + textArray[index].trimEnd() + '".';
+        prompt = 'Write ' + numQuestions + ' comprehension questions followed by answers to the questions on a new line about the following research article: "' + textArray[index].trimEnd() + '".';
         break;
     }
     let pageNum = index + 1
@@ -111,43 +112,8 @@ async function gptQuestionFunc(textArray, questionType = 'Comprehension', numQue
 }
 
 
-/**
- * Gets answers to learning questions from ChatGPT based on an associated array of page/paragraph text.
- * @param {array} textArray - array of PDF text, each elem is a page/paragraph of text
- * @param {array} questionArray - array of learning questions, each elem is an array of questions for a page/paragraph
- * @returns {array} resultArray - array of answers, each elem is an array of answers for questions of a page/paragraph
- */
-async function gptAnswerFunc(textArray, questionArray) {
-
-  let prompt = '';
-  let resultArray = [];
-  const api = new ChatGPTAPI({
-    apiKey: process.env.OPENAI_API_KEY
-  });
-
-  // First page
-  prompt = 'Based on this text: "' + textArray[0].trimEnd() + '", answer the following questions: ' + questionArray[0].join(" ");
-  let res = await oraPromise(api.sendMessage(prompt), {
-    text: 'Loading answers for Page 1'
-  });
-  resultArray[0] = structureResponse(res.text);
-
-  // Loop through remaining pages and generate answers to questions
-  for (let index = 1; index < textArray.length; index++) {
-    prompt = 'Based on this text: "' + textArray[index].trimEnd() + '", answer the following questions: ' + questionArray[index].join(" ");
-    res = await oraPromise(
-      api.sendMessage(prompt, {
-        conversationId: res.conversationId,
-        parentMessageId: res.messageId
-      }),-
-      {
-        text: 'Loading answers for Page ' + pageNum
-      }
-    )
-    resultArray[index] = structureResponse(res.text);
-  }
-  return resultArray;
-}
+// const test = 'Q3: What is an example of a system of linear equations with no solution? A3: x1 + x2 + x3 = 3 (1), x1 - x2 + 2x3 = 2 (2), 2x1 + 3x3 = 1 (3).'
+// structureRegex(test);
 
 
 app.get('/', function(req, res) {
@@ -175,7 +141,7 @@ app.post('/static/viewer.html', function(req, res) {
   let numQuestions = req.body.num_questions;
 
   getTextFromPDF("web/" + fileName).then(pageTexts => {
-    console.log(pageTexts);
+    // console.log(pageTexts);
     gptQuestionFunc(pageTexts, questionType, numQuestions).then(lqs => {
       console.log(lqs);
       questionArray = lqs;

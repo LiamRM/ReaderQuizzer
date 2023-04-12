@@ -1,67 +1,74 @@
-Q1: What is linear algebra?
-A1: Linear algebra is the study of vectors and certain algebra rules to manipulate vectors. 
-Q2: How are geometric vectors usually denoted?
-A2: Geometric vectors are usually denoted by a small arrow above the letter, e.g., -→x and -→y. 
-Q3: What are two operations that can be performed on vectors?
-A3: Vectors can be added together and multiplied by scalars to produce another object of the same kind.
+Q1: What is linear algebra? A: Linear algebra is the study of vectors and certain algebraic rules to manipulate vectors. 
+Q2: How are vectors typically denoted? A: Geometric vectors are usually denoted by a small arrow above the letter, e.g., −→x and −→y. 
+Q3: What properties must an object have to be considered a vector? A: An object must be able to be added together and multiplied by scalars to be considered a vector. 
+Q4: What is an example of a vector object? A: Examples of vector objects include geometric vectors (e.g., −→x and −→y) and polynomials.
 
-Q1: What are polynomials?
-Answer: Polynomials are mathematical expressions consisting of variables and coefficients, which are combined using arithmetic operations. They can be added together, resulting in another polynomial, and multiplied by a scalar (a real number) to produce a polynomial. 
-Q2: How are audio signals represented?
-Answer: Audio signals are represented as a series of numbers. 
-Q3: What is the concept of closure in mathematics?
-Answer: The concept of closure in mathematics is the idea of finding the set of all things that can result from a given set of operations. In the case of vectors, these operations include adding them together and scaling them, which results in a vector space.
+Q1: What is the definition of a polynomial? 
+A1: A polynomial is an expression consisting of variables and constants, combined using addition, subtraction, multiplication and division operations. 
+Q2: What is the difference between geometric vectors and polynomials? 
+A2: Geometric vectors are concrete drawings while polynomials are abstract concepts. However, they are both vectors in the sense of being able to be added together and multiplied by a scalar. 
+Q3: How can audio signals be represented as vectors? 
+A3: Audio signals can be represented as a series of numbers and can be added together and scaled, making them a type of vector. 
+Q4: What is the concept of closure in mathematics? 
+A4: Closure in mathematics is the idea of determining the set of all possible results from a given set of operations.
 
-Q1: What is the purpose of the research article?
-A1: The purpose of the research article is to discuss the concepts of linear algebra and how they are used in machine learning and general mathematics. 
-Q2: What is Example 2.1 about?
-A2: Example 2.1 is about finding an optimal production plan for a company that produces multiple products and has limited resources. 
-Q3: What resources are suggested for further reading?
-A3: Resources suggested for further reading include Gilbert Strang's Linear Algebra course at MIT and the Linear Algebra Series by 3Blue1Brown.
+Q1: What is the objective of the example in Section 2.1 of the research article? 
+A1: To find an optimal production plan for a given set of resources. 
+Q2: What type of equations are used in the example? 
+A2: Linear equations. 
+Q3: What other topics in the research article are related to linear algebra? 
+A3: Vector calculus, linear regression, dimensionality reduction, and analytic geometry. 
+Q4: What resources are recommended for further study of linear algebra? 
+A4: Gilbert Strang’s Linear Algebra course at MIT and the Linear Algebra Series by 3Blue1Brown.
 
-Q1: What is the general form of a system of linear equations mentioned in the research article? A1: The general form of a system of linear equations is ai1x1 + ··· + ainxn = bi, where aij ∈ R and bi ∈ R. 
-Q2: What is an example of a system of linear equations given in the article? A2: Example 2.2 is a system of linear equations, x1 + x2 + x3 = 3 (1), x1 - x2 + 2x3 = 2 (2), 2x1 + 3x3 = 1 (3). 
-Q3: How can a solution of a linear equation system be found? A3: Solutions of a linear equation system can be found by solving the system of equations to determine the values of the unknowns.
+Q1: What is the general form of a system of linear equations?
+A1: a11x1 + ··· + a1nxn = b1, ..., am1x1 + ··· + amnxn = bm.
+Q2: What is an example of a system of linear equations with no solution?
+A2: x1 + x2 + x3 = 3, x1 - x2 + 2x3 = 2.
+Q3: What is the unique solution to the system of linear equations x1 + x2 + x3 = 3, x1 - x2 + 2x3 = 2, x2 + x3 = 2?
+A3: (1, 1, 1).
+Q4: What is the URL of the draft of "Mathematics for Machine Learning" being discussed in the research article?
+A4: https://mml-book.com.
 
-Q1: What is the solution space of a system of two linear equations with two variables?
-A1: The solution space is the intersection of two lines. 
-Q2: How many solutions can a real-valued system of linear equations have?
-A2: A real-valued system of linear equations can have no, exactly one, or infinitely many solutions. 
-Q3: How is linear regression related to Example 2.1?
-A3: Linear regression solves a version of Example 2.1 when we cannot solve the system of linear equations.
+Q1: What is the solution space of a system of two linear equations with two variables? 
+A1: The solution space is the intersection of two lines.
+Q2: How can linear regression be used to solve Example 2.1? 
+A2: Linear regression solves a version of Example 2.1 when the system of linear equations cannot be solved.
+Q3: What shapes can the solution set take in a real-valued system of linear equations? 
+A3: The solution set can take the form of no solutions, one solution, or infinitely many solutions. 
+Q4: How is a system of linear equations written in a compact notation? 
+A4: A system of linear equations is written as a matrix of coefficients, vectors and variables.
 
-Q1: What is a matrix?
-A1: A matrix is an m × n tuple of elements aij, i = 1...m, j = 1...n which is ordered according to a rectangular scheme consisting of m rows and n columns.?
+Q1: What is the definition of a matrix in linear algebra? 
+A1: A matrix is an m·n-tuple of elements aij, i = 1, ..., m, j = 1, ..., n which is ordered according to a rectangular scheme consisting of m rows and n columns.
 
-Q1: What is the notation to denote multiplication of two matrices? 
-A1: The notation to denote multiplication of two matrices is A·B. 
-Q2: What is the Hadamard product? 
-A2: The Hadamard product is an element-wise multiplication of two matrices, i.e., cij = aij bij. 
-Q3: What is the identity matrix? 
-A3: The identity matrix is an n×n matrix with all elements equal to 0 except for the diagonal elements which are equal to 1.
+Q1: What is the notation for the dot product of two vectors?
+A1: The dot product between two vectors is denoted by a>b or 〈a, b〉. 
+Q2: What do the neighboring dimensions refer to in matrix multiplication?
+A2: The neighboring dimensions refer to the number of columns in A and the number of rows in B. 
+Q3: Is matrix multiplication commutative?
+A3: No, matrix multiplication is not commutative. 
+Q4: What is an identity matrix?
+A4: An identity matrix is a square matrix with ones on the main diagonal and zeroes everywhere else.
 
-Q1: What is matrix multiplication? 
-A1: Matrix multiplication is a binary operation that takes two matrices as input and produces a single matrix as output. 
-Q2: What is the identity matrix? 
-A2: The identity matrix is a square matrix with 1s on the diagonal and 0s everywhere else. 
-Q3: What is the inverse of a matrix? 
-A3: The inverse of a matrix is a matrix which when multiplied by the original matrix results in the identity matrix.
+Q1: What is the definition of matrix multiplication?
+A1: Matrix multiplication is defined as a process of multiplying two matrices together. Q2: What are some properties of matrices?
+A2: Matrices have properties such as associativity, distributivity and multiplication with the identity matrix. Q3: What is an inverse matrix?
+A3: An inverse matrix is a matrix that has the property that when multiplied with the original matrix, it produces the identity matrix. Q4: When does a matrix possess an inverse?
+A4: A matrix possesses an inverse when it is regular, invertible and nonsingular.?
 
-Q1: What is the determinant of a 2x2 matrix?  A1: The determinant of a 2x2 matrix is the value calculated from the equation: a11*a22 - a12*a21. 
-Q2: What is the transpose of a matrix? A2: The transpose of a matrix is a matrix that is obtained by writing the columns of the original matrix as the rows of the new matrix. 
-Q3: What is a symmetric matrix? A3: A symmetric matrix is a matrix in which the entries along the main diagonal are equal to the entries in the corresponding positions of the transposed matrix.
+Q1: What is the definition of a transpose?
+A1: The transpose of a matrix A ∈ Rm×n is a matrix B ∈ Rn×m with bij = aji. Q2: What is the main diagonal of a matrix?
+A2: The main diagonal of a matrix A is the collection of entries Aij where i = j. Q3: What are the important properties of inverses and transposes?
+A3: The important properties of inverses and transposes are that AA-1 = I = A-1A, (AB)-1 = B-1A-1, (A + B)-1 = A-1 + B-1, (A>) = A, (A+B)> = A>+B>, and (AB)> = B>A>. Q4: What is a symmetric matrix?
+A4: A matrix A ∈ Rn×n is symmetric if A = A>.?
 
-Q1: What is Associativity? 
-A1: Associativity is the property of an operation where the order in which two elements are combined does not affect the result. 
-Q2: What is Distributivity? 
-A2: Distributivity is the property of an operation where the result of combining two elements is equal to the sum of the results of combining each element with the other separately. 
-Q3: How can we represent a system of linear equations in a more compact form? 
-A3: A system of linear equations can be represented in a more compact form by using matrix multiplication and the rules for matrix multiplication.
+Q1: What is the definition of associativity? 
+A1: Associativity means that for any scalar values λ and ψ, λ(ψC) = (λψ)C = BCλ.
 
-Q1: What is the general form of an equation system? 
-A1: The general form of an equation system is a matrix of constants and unknowns, Ax = b, where aij ∈R and bi ∈R. 
-Q2: What is the particular solution for the example given in the article? 
-A2: The particular solution for the example is [42, 8, 0, 0]. 
-Q3: How can we express the third column of the matrix using the first two columns? 
-A3: The third column of the matrix can be expressed as 8[1, 0] + 2[0, 1].
+Q1: What is the general form of an equation system?
+A1: a11x1 + ... + a1nxn = b1...amn1x1 + ... + amnxn = bm. Q2: What is the example of a system of equations given?
+A2: x1 + 0x2 + 8x3 - 4x4 = 42, 0x1 + 1x2 + 2x3 + 12x4 = 8. Q3: What is a particular solution to the example?
+A3: [42, 8, 0, 0]. Q4: How can the third column of the matrix be expressed using the first two columns?
+A4: 8[1,0] + 2[0,1].?
 

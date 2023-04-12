@@ -95,6 +95,7 @@ function saveQuestionsToFile(arr, fname = "web/questions/result.txt") {
  * an array of a page/paragraph's learning questions
  */
 function structureResponse(response) {
+  // split text to array by \n
   let tempArr = response.split('\n');
   
   // get rid of '' elements
@@ -111,11 +112,127 @@ function structureResponse(response) {
       tempArr[0] = tempArr[0].slice(11);
     }
 
+    // Add a question mark back to the end of the question
     tempArr = tempArr.map(elem => elem.trim());
     tempArr = tempArr.map(elem => elem + '?');
   }
-  
+
+
+  // edge case where question and answer are in same element
+  tempArr = tempArr.flatMap((elem) => {
+    // Case 1: Question followed by Answer
+    const regex = /Q\d+:(.*)A\d+:(.*)/gs;
+    const matches = elem.match(regex);
+
+    // check if question and answer are in same element
+    if (Array.isArray(matches)) {
+      console.log("Found match!", matches);
+
+      // get the answer:
+      const answerRegex = /A\d+:(.*)/gs;
+      const ansMatches = elem.match(answerRegex);
+      const question = elem.replace(answerRegex, "").trim();
+      const answer = ansMatches[0].trim();
+
+      elem = [question, answer];
+      return elem;
+    }
+
+    // Case 2: Answer followed by Question
+    // const regex2 = /A\d+:(.*)Q\d+:(.*)/gs;
+    // const matches2 = elem.match(regex2);
+
+    // // check if question and answer are in same element 
+    // if (Array.isArray(matches2)) {
+    //   console.log("Found match, Case 2!", matches2);
+
+    //   // get the question and answer
+    //   const questionRegex = /Q\d+:(.*)/gs;
+    //   const qMatches = elem.match(questionRegex);
+    //   const answer = elem.replace(questionRegex, "").trim();
+    //   const question = qMatches[0].trim();
+
+    //   elem = [question, answer];
+    //   return elem;
+    // }
+
+    return elem;
+  });
+
   return tempArr;
+}
+
+function structureRegex(inputText) {
+  console.log("'", inputText, "'");
+  const regex = /Q\d+:(.*)A\d+:(.*)/gs;
+  const matches = inputText.match(regex);
+
+  let testArr = [inputText];
+
+  testArr = testArr.flatMap((elem) => {
+    // Case 1: Question followed by Answer
+    const regex = /Q\d+:(.*)A\d+:(.*)/gs;
+    const matches = elem.match(regex);
+
+    // check if question and answer are in same element 
+    if (Array.isArray(matches)) {
+      console.log("Found match!", matches);
+
+      // get the answer:
+      const answerRegex = /A\d+:(.*)/gs;
+      const ansMatches = elem.match(answerRegex);
+      const question = elem.replace(answerRegex, "").trim();
+      const answer = ansMatches[0].trim();
+
+      elem = [question, answer];
+      return elem;
+      console.log("ELEM", elem);
+    }
+
+    // Case 2: Answer followed by Question
+    const regex2 = /A\d+:(.*)Q\d+:(.*)/gs;
+    const matches2 = elem.match(regex2);
+
+    // check if question and answer are in same element 
+    if (Array.isArray(matches2)) {
+      console.log("Found match, Case 2!", matches2);
+
+      // get the question and answer
+      const questionRegex = /Q\d+:(.*)/gs;
+      const qMatches = elem.match(questionRegex);
+      const answer = elem.replace(questionRegex, "").trim();
+      const question = qMatches[0].trim();
+
+      elem = [question, answer];
+      console.log("ELEM", elem);
+    }
+
+    return elem;
+  });
+  console.log("RESULT", testArr);
+
+  // if (Array.isArray(matches)) {
+  //   console.log("Found match!", matches);
+
+  //   // get the answer:
+  //   const answerRegex = /A\d+:(.*)/gs;
+  //   const ansMatches = inputText.match(answerRegex);
+  //   const question = inputText.replace(answerRegex, "").trim();
+  //   const answer = ansMatches[0].trim();
+  //   console.log("QUESTION:", question);
+  //   console.log("ANSWER: ", answer);
+
+  //   // inputText = question;
+
+  //   // testArr.push(inputText);
+
+  //   // // Insert answer as element after the question
+  //   // let currentIndex = testArr.indexOf(inputText);
+  //   // testArr.splice(currentIndex + 1, 0, answer);
+
+  //   console.log([question, answer]);
+  // }
+
 }
 
 
@@ -123,5 +240,6 @@ export {
   getTextFromPDF,
   readQuestionsFromFile,
   saveQuestionsToFile,
-  structureResponse
+  structureResponse,
+  structureRegex
 };
