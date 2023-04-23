@@ -121,7 +121,12 @@
   margin-bottom: 10px;
 }
 
+/* Mouseover cursor */
 .answerBox:hover{
+  cursor: pointer;
+}
+
+.submit-btn:hover {
   cursor: pointer;
 }
 
@@ -245,6 +250,19 @@
   font-size: 16px;
   font-weight: 600;
   color: #FFFFFF;
+}
+
+
+/* OpenFile */
+input[type="file"] {
+  display: none;
+}
+
+.file-input-label {
+  border: 1px solid #ccc;
+  display: inline-block;
+  padding: 6px 12px;
+  cursor: pointer;
 }
 
 

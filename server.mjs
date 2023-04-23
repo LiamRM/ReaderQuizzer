@@ -14,6 +14,20 @@ import express from 'express';
 import dotenv from 'dotenv-safe';
 import { oraPromise } from 'ora';
 
+/* configuring server to parse multipart/form-data uploads */
+import multer from 'multer';
+// Multer middleware configuration
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, 'uploads/');
+  },
+  filename: function (req, file, cb) {
+    cb(null, file.originalname);
+  }
+});
+const upload = multer({ storage: storage });
+
+
 /* importing utils */
 import { getTextFromPDF, readQuestionsFromFile, saveQuestionsToFile, structureRegex, structureResponse } from './utils.mjs';
 
@@ -40,7 +54,7 @@ dotenv.config()
 
 /* variables */
 var questionArray = readQuestionsFromFile("web/questions/linearalg.txt");
-var fileName = "linearalg.pdf";
+var fileName = "pdfs/default2.pdf";
 
 
 /**
@@ -129,7 +143,26 @@ app.get('/static/viewer.html', function(req, res) {
   // res.sendFile(path.join(__dirname + '/static/viewer.ejs'));
   console.log("QArray length:", questionArray.length);
   res.render("viewer", {questionArray: questionArray});
-})
+});
+
+app.post('/upload', upload.single('pdfFile'), async (req, res) => {
+  console.log(req.file);
+  const pdfFile = req.file;
+  if (!pdfFile) {
+    return res.status(400).send('No file uploaded.');
+  }
+  
+  // The file has been successfully uploaded to the server's file system
+  // You can process the file here (e.g., read its contents or move it to a different directory)
+  getTextFromPDF(pdfFile.path).then(pageTexts => {
+    console.log(pageTexts);
+
+    /* save pdfFile path object on server? */
+  })
+
+  res.send('File uploaded!');
+});
+
 
 app.post('/static/viewer.html', function(req, res) {
 

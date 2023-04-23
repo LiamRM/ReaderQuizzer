@@ -17,9 +17,11 @@ You can start with this very repository:
 
 ### Todo (in order of priority)
 - [x] Correctly position questions to the right of the PDF Viewer at 100% view
-- [ ] Correctly set height of questionBox based on the zoom factor
+- [ ] Separate answers from questions (each written to new line)
+- [ ] Correctly set height of questionBox based on the zoom factor (could probably change this dynamically if front-end created in React)
 - [ ] Generate questions by section (not by page)
-- [ ] Structure response from official ChatGPT API
+- [ ] Open files dynamically
+- [x] Structure response from official ChatGPT API
 - [x] Incorporate official ChatGPT API
 - [x] Fix 'generate questions' icon
 - [x] Generate questions for ALL pages
@@ -29,8 +31,13 @@ You can start with this very repository:
 - [x] Render a `<p>` tag per question
 - [x] Read questions from file into questionArray
 - [x] make questionArray an array of arrays
-- [ ] Allow user to specify number of LQs per page (not just 4)
+- [x] Allow user to specify number of LQs per page (not just 4)
 - [ ] Add loading indicator when ChatGPT questions are loading
+
+- [ ] Change architecture to full-stack online web app, not locally hosted
+    - front-end: React.js. Gets PDF file via <input> and uploads file to back-end via Axios post request
+    - back-end: Node.js. Accepts API calls from web app and calls OpenAI API, and returns generated questions as a response
+- [ ] Host back-end on server (EC2, Heroku, etc) and make front-end a webpage
 
 
 

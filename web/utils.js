@@ -4,6 +4,7 @@ const dropdownMenu = document.querySelector('.dropdown-menu');
 const answerBoxes = document.getElementsByClassName('answerBox');
 const answerTexts = document.getElementsByClassName('answerText');
 const answerLabels = document.getElementsByClassName('showAnswerLabel');
+const pdfFileInput = document.getElementById('pdfFileInput');
 
 dropdownButton.addEventListener('click', function() {
   dropdownMenu.classList.toggle('hidden');
@@ -37,3 +38,24 @@ output.innerHTML = slider.value; // Display the default slider value
 slider.oninput = function() {
   output.innerHTML = this.value;
 }
+
+
+// Opening Files
+pdfFileInput.addEventListener('change', async (event) => {
+  const file = event.target.files[0];
+  const formData = new FormData();
+  formData.append('pdfFile', file);
+
+  try {
+    const response = await fetch('/upload', {
+      method: 'POST',
+      body: formData,
+    });
+    const textContent = await response.text();
+
+    console.log(textContent);
+    // Display the extracted text content to the user
+  } catch (error) {
+    console.error(error);
+  }
+});
