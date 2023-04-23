@@ -16,18 +16,6 @@ import { oraPromise } from 'ora';
 
 /* configuring server to parse multipart/form-data uploads */
 import multer from 'multer';
-// Multer middleware configuration
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, 'uploads/');
-  },
-  filename: function (req, file, cb) {
-    cb(null, file.originalname);
-  }
-});
-const upload = multer({ storage: storage });
-
-
 /* importing utils */
 import { getTextFromPDF, readQuestionsFromFile, saveQuestionsToFile, structureRegex, structureResponse } from './utils.mjs';
 
@@ -52,9 +40,25 @@ app.use('/build', express.static('build'));
 app.listen(4000, () => console.log('listening on port 4000'));
 dotenv.config()
 
+
 /* variables */
 var questionArray = readQuestionsFromFile("web/questions/linearalg.txt");
-var fileName = "pdfs/default2.pdf";
+var pdfFolder = "pdfs/"
+var fileName = "";
+var filePath = "";  // default is empty
+
+
+// Multer middleware configuration
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    let path = 'web/' + pdfFolder;
+    cb(null, path);
+  },
+  filename: function (req, file, cb) {
+    cb(null, file.originalname);
+  }
+});
+const upload = multer({ storage: storage });
 
 
 /**
@@ -126,17 +130,11 @@ async function gptQuestionFunc(textArray, questionType = 'Comprehension', numQue
 }
 
 
-// const test = 'Q3: What is an example of a system of linear equations with no solution? A3: x1 + x2 + x3 = 3 (1), x1 - x2 + 2x3 = 2 (2), 2x1 + 3x3 = 1 (3).'
-// structureRegex(test);
-
-
 app.get('/', function(req, res) {
   // res.sendFile(path.join(__dirname + '/public/visor.html'));
 
   // Straight to viewer, no need for visor.html
-  res.redirect('/static/viewer.html' + '?file=' + fileName);
-
-
+  res.redirect('/static/viewer.html' + '?file=' + filePath);
 });
 
 app.get('/static/viewer.html', function(req, res) {
@@ -151,29 +149,31 @@ app.post('/upload', upload.single('pdfFile'), async (req, res) => {
   if (!pdfFile) {
     return res.status(400).send('No file uploaded.');
   }
+
+  /* save pdfFile path and redirect client to newly opened PDF */
+  fileName = pdfFile.filename;
+  filePath = pdfFolder + pdfFile.filename;
+  res.redirect('/static/viewer.html' + '?file=' + filePath);
   
   // The file has been successfully uploaded to the server's file system
   // You can process the file here (e.g., read its contents or move it to a different directory)
   getTextFromPDF(pdfFile.path).then(pageTexts => {
-    console.log(pageTexts);
+    // console.log(pageTexts);
 
     /* save pdfFile path object on server? */
+    console.log(pdfFile.filename);
+    
   })
-
-  res.send('File uploaded!');
 });
 
 
 app.post('/static/viewer.html', function(req, res) {
 
-  // TODO: Get the fileName dynamically from opening a new file
-  // ex: fileName = req.body.filename ...
-
   console.log("Body:", req.body);
   let questionType = req.body.question_type;
   let numQuestions = req.body.num_questions;
 
-  getTextFromPDF("web/" + fileName).then(pageTexts => {
+  getTextFromPDF("web/" + filePath).then(pageTexts => {
     // console.log(pageTexts);
     gptQuestionFunc(pageTexts, questionType, numQuestions).then(lqs => {
       console.log(lqs);
@@ -182,7 +182,7 @@ app.post('/static/viewer.html', function(req, res) {
       // Write result to file
       saveQuestionsToFile(questionArray, 'web/questions/linearalg.txt');
 
-      res.redirect('/static/viewer.html' + '?file=' + fileName);
+      res.redirect('/static/viewer.html' + '?file=' + filePath);
     });
   });
 

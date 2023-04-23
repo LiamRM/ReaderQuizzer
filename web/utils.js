@@ -51,9 +51,22 @@ pdfFileInput.addEventListener('change', async (event) => {
       method: 'POST',
       body: formData,
     });
-    const textContent = await response.text();
+    // Check the status of the response
+    if (response.ok) {
+      // If the response is a redirect, navigate to the new URL
+      if (response.redirected) {
+        window.location.href = response.url;
+      } else {
+        // Otherwise, do something with the response data
+        return response.json();
+      }
+    } else {
+      throw new Error('Network response was not ok.');
+    }
+    
+    // const textContent = await response.text();
 
-    console.log(textContent);
+    // console.log(textContent);
     // Display the extracted text content to the user
   } catch (error) {
     console.error(error);

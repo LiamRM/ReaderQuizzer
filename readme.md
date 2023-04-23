@@ -20,7 +20,7 @@ You can start with this very repository:
 - [ ] Separate answers from questions (each written to new line)
 - [ ] Correctly set height of questionBox based on the zoom factor (could probably change this dynamically if front-end created in React)
 - [ ] Generate questions by section (not by page)
-- [ ] Open files dynamically
+- [x] Open files dynamically
 - [x] Structure response from official ChatGPT API
 - [x] Incorporate official ChatGPT API
 - [x] Fix 'generate questions' icon
@@ -35,7 +35,7 @@ You can start with this very repository:
 - [ ] Add loading indicator when ChatGPT questions are loading
 
 - [ ] Change architecture to full-stack online web app, not locally hosted
-    - front-end: React.js. Gets PDF file via <input> and uploads file to back-end via Axios post request
+    - front-end: React.js. Gets PDF file via <input> and uploads file to back-end via POST request
     - back-end: Node.js. Accepts API calls from web app and calls OpenAI API, and returns generated questions as a response
 - [ ] Host back-end on server (EC2, Heroku, etc) and make front-end a webpage
 

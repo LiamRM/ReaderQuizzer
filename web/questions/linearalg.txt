@@ -1,43 +1,58 @@
-Q: What is linear algebra?
-A: Linear algebra is the study of vectors and certain algebraic rules to manipulate vectors.
+Q:What is the purpose of trace-based just-in-time type specialization?
+A: To provide inter-procedural type specialization and an efficient way of incrementally compiling lazily discovered alternative paths through nested loops.
 
-Q1: What are polynomials?
-A1: Polynomials are mathematical expressions consisting of variables and coefficients, which represent a sum of terms. They can be added together to form another polynomial and multiplied by a scalar to produce a polynomial as well. 
-Q2: What is the concept of closure in mathematics?
-A2: In mathematics, closure is the concept of creating a set of results from a given set of operations. For example, the set of all vectors that can result from adding and scaling a small set of vectors is a vector space.
+Q1: What algorithm is used to capture and compile frequently executed code regions?
+A1: Trace tree based compilation.
+Q2: How does TraceMonkey dynamically translate a program to nested, type-specialized trace trees?
+A2: By recording nested trace trees and stopping the inner tree when it reaches an outer loop, then starting a new trace at the outer loop header and attempting to call the inner tree when the outer loop reaches the inner loop header.
 
-Q1: What is the objective of the example in Section 2.1? 
-A1: To find an optimal production plan, i.e., a plan of how many units of product should be produced with available resources and no resources left over.
-Q2: What role does linear algebra play in machine learning? 
-A2: Linear algebra plays an important role in machine learning by providing tools for solving problems formulated as systems of linear equations.
+Q1: What is the purpose of guards in the LIR recording of the sample program?
+A1: Guards verify that the control flow and types are identical to those observed during trace recording. 
+Q2: How does TraceMonkey attempt to nest the inner loop inside the current trace?
+A2: TraceMonkey calls the inner trace as a subroutine and records the call as part of the current trace.
 
-Q1: What is the general form of a system of linear equations? 
-A1: The general form of a system of linear equations is a,ijxj=bi, where aij ∈ R and bi ∈ R. 
-Q2: What is an example of a system that has no solution? 
-A2: An example of a system with no solution is x1 + x2 + x3 = 3 (1), x1 − x2 + 2x3 = 2 (2), 2x1 + 3x3 = 1 (3).
+Q1: What are the key optimizations that are performed when recording LIR?
+A1: Type specialization, representation specialization (e.g. objects), and guard instructions to ensure assumptions about state are correct. 
+Q2: What is a typed trace?
+A2: A typed trace is a trace annotated with a type for every variable (including temporaries) on the trace, and an entry type map giving the required types for variables used on the trace before they are defined.
 
-Q1: What is the solution set of a system of two linear equations with two variables? 
-A1: The solution set is the intersection of the two lines. 
-Q2: What are the possible solutions to a real-valued system of linear equations? 
-A2: No, exactly one, or infinitely many solutions.
+Q1: What are guards used for in TraceMonkey? 
+A1: Guards are used to verify assumptions made during optimizations.
 
-Q1: What is a matrix?
-A1: A matrix is an m x n tuple of elements a_ij, where i = 1,...,m and j = 1,...,n, ordered according to a rectangular scheme consisting of m rows and n columns.
+Q1: What is the purpose of blacklisting traces in the VM?
+A1: To avoid spending time trying to record traces that will fail due to limitations in the implementation.
+Q2: What is the purpose of loop header no-op and patching the bytecode?
+A2: To avoid spending time finding the loop fragment and to blacklist a fragment by replacing the loop header no-op with a regular no-op.
 
-Q: What is the definition of an identity matrix? 
-A: An identity matrix in Rnxn is a matrix with 1s along its main diagonal and 0s everywhere else.
+Q1: What is the algorithm for building nested trace trees?
+A1: The algorithm starts tracing at loop headers, stops when exiting a loop, calls inner loops with type-matching compiled trace trees, aborts outer recording to obtain inner loop trace, and calls inner tree as a nested trace tree.
+Q2: What is the key insight of the nesting algorithm?
+A2: The key insight is that if each loop is represented by its own trace tree, the code for each loop can be contained only in its own tree and outer loop paths will not be duplicated.
 
-Q1: What is the definition of matrix inverse?
-A1: The inverse of a square matrix A is an n×n matrix B such that AB = BA = I, where I is the identity matrix.
+Question 1: What optimizations are used in the trace recorder?
+Answer: Constant folding, CSE, expression simplification, and source language semantic-specific expression simplification.
+Question 2: How does the register allocator work?
+Answer: Greedy pass over the trace, assigns free register to each instruction if available, uses class heuristic to select "oldest" register-carried value for spilling.
 
-Q1: What is the definition of a symmetric matrix?
-A1: A matrix A ∈ Rn×n is symmetric if A = A>.
+Q: What is trace stitching?
+A: Trace stitching is a feature that allows transitions from a trace to a branch trace at a side exit, avoiding the costs of calling traces from the monitor.
 
-Q1: What does the equation "λ(BC) = (λB)C = (BC)λ" mean?
-A1: It means that the product of two matrices, BC, is equal to the product of the matrices when their order is reversed, i.e. the scalar λ can be moved around the two matrices.
+Q1: What is the purpose of the foreign function interface (FFI) in SpiderMonkey?
+A1: The FFI allows SpiderMonkey to call C builtins and host system functions.
 
-Q1: What is the general form of an equation system? 
-A1: a11x1 + ... + a1nxn = b1, ... , am1x1 + ... + amnxn = bm. 
-Q2: What is the particular solution for the system of equations given in (2.38)? 
-A2: [42, 8, 0, 0].
+Q: What programs benefit most from TraceMonkey?
+A: Programs that benefit most from type specialization, such as those that perform bit manipulation.
+Q: What is the estimated performance of TraceMonkey on benchmark programs?
+A: TraceMonkey produces particularly efficient code for these programs and can execute 25 times faster than the SpiderMonkey interpreter, and almost 5 times faster than V8 and SFX for one of the benchmark programs.
+
+Q1: What is the overall speedup achieved by the VM?
+A1: 3.9x. 
+Q2: How many benchmarks does the VM outperform?
+A2: 9.
+
+Q: What are the main benefits of trace-based JavaScript compilation?
+A: Benefits of trace-based JavaScript compilation include improved performance, type specialization, native code generation and reduced dispatch overhead.
+
+Q1: What is the purpose of the National Science Foundation (NSF)? 
+A1: The National Science Foundation (NSF) funds and promotes research in science, technology, engineering, and mathematics.
 
