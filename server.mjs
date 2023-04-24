@@ -16,6 +16,7 @@ import { oraPromise } from 'ora';
 
 /* configuring server to parse multipart/form-data uploads */
 import multer from 'multer';
+import fs from 'fs';
 /* importing utils */
 import { getTextFromPDF, readQuestionsFromFile, saveQuestionsToFile, structureRegex, structureResponse } from './utils.mjs';
 
@@ -55,7 +56,24 @@ const storage = multer.diskStorage({
     cb(null, path);
   },
   filename: function (req, file, cb) {
-    cb(null, file.originalname);
+    const filename = file.originalname;
+    let filepath = 'web/' + pdfFolder + filename;
+
+    /* Check if file exists on server before upload */
+    if (fs.existsSync(filepath)) {
+      // File already exists, delete it and accept the upload
+      fs.unlink(filepath, (err) => {
+        if (err) {
+          cb(new Error('Failed to delete existing file'));
+        } else {
+          console.log("Deleted existing file, accepting upload.");
+          cb(null, filename);
+        }
+      });
+    } else {
+      // File does not exist, accept the upload
+      cb(null, filename);
+    }
   }
 });
 const upload = multer({ storage: storage });
@@ -143,8 +161,10 @@ app.get('/static/viewer.html', function(req, res) {
   res.render("viewer", {questionArray: questionArray});
 });
 
+/* POST request with Multer file upload middleware function before route handler function */
 app.post('/upload', upload.single('pdfFile'), async (req, res) => {
-  console.log(req.file);
+
+  console.log("Uploaded file:", req.file);
   const pdfFile = req.file;
   if (!pdfFile) {
     return res.status(400).send('No file uploaded.');
@@ -157,13 +177,13 @@ app.post('/upload', upload.single('pdfFile'), async (req, res) => {
   
   // The file has been successfully uploaded to the server's file system
   // You can process the file here (e.g., read its contents or move it to a different directory)
-  getTextFromPDF(pdfFile.path).then(pageTexts => {
-    // console.log(pageTexts);
+  // getTextFromPDF(pdfFile.path).then(pageTexts => {
+  //   // console.log(pageTexts);
 
-    /* save pdfFile path object on server? */
-    console.log(pdfFile.filename);
+  //   /* save pdfFile path object on server? */
+  //   console.log(pdfFile.filename);
     
-  })
+  // })
 });
 
 
