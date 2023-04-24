@@ -1,5 +1,6 @@
 const dropdownButton = document.querySelector('.dropdown-button');
 const dropdownMenu = document.querySelector('.dropdown-menu');
+const openFileInstructions = document.querySelector('.open-file-instructions');
 
 const answerBoxes = document.getElementsByClassName('answerBox');
 const answerTexts = document.getElementsByClassName('answerText');
@@ -42,6 +43,7 @@ slider.oninput = function() {
 
 // Opening Files
 pdfFileInput.addEventListener('change', async (event) => {
+
   const file = event.target.files[0];
   const formData = new FormData();
   formData.append('pdfFile', file);
@@ -64,7 +66,7 @@ pdfFileInput.addEventListener('change', async (event) => {
     } else {
       throw new Error('Network response was not ok.');
     }
-    
+
   } catch (error) {
     console.error(error);
   }

@@ -34,12 +34,13 @@ You can start with this very repository:
 - [x] Read questions from file into questionArray
 - [x] make questionArray an array of arrays
 - [x] Allow user to specify number of LQs per page (not just 4)
+- [ ] No PDF loaded by default, UI prompting user to "open a file" 
 - [ ] Add loading indicator when ChatGPT questions are loading
 
-- [ ] Change architecture to full-stack online web app, not locally hosted
+- [x] Change architecture to full-stack web app, locally hosted
     - front-end: React.js. Gets PDF file via <input> and uploads file to back-end via POST request
     - back-end: Node.js. Accepts API calls from web app and calls OpenAI API, and returns generated questions as a response
-- [ ] Host back-end on server (EC2, Heroku, etc) and make front-end a webpage
+- [ ] Host back-end on server online (EC2, Heroku, etc) and make front-end a webpage
 
 
 
