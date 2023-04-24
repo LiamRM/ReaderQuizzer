@@ -1,0 +1,30 @@
+Q1: What components are present in Room 140?
+A1: Novation Impulse 61 (Midi Controller keyboard), Akai MPD 18 (Midi controller pad station), Roland Gaia (Synthesizer), Neumann KH 120 (Speakers), iMac (Audio Workstation), AKG K240 MK2 (Headphones), XLR (Patchbay), UAD 4-710d (4 channel Mic/line Preamp), UAD Apollo (8 channel Audio Interface). 
+Q2: What is the purpose of the components in Room 140?
+A2: The components in Room 140 are used for audio production, including synthesizing music, recording audio, and mixing audio.
+
+Q1: What is the primary purpose of the room? 
+A1: The primary purpose of the room is to be used as a Music Composition / Editing Room. 
+Q2: What is the procedure to switch on/off the Apollo Audio Interface? 
+A2: To switch on the Apollo Audio Interface, press the on/off button. To switch off, press the on/off button for more than 2 seconds.
+
+Q1: What is the Apollo Audio Interface unit? 
+A1: The Apollo Audio Interface unit is an integral component for this space.
+Q2: How do you use the Apollo Audio Interface unit? 
+A2: To hear any AUDIO, the Apollo unit has to be turned on and the right dial has to be used as demonstrated in the picture.
+
+Q: What are two MIDI controllers that can be used to enter MIDI data? 
+A: The Novation Impulse 61 and the Akai MPD 18. 
+Q: How can you record the Roland Gaia Synthesizer? 
+A: Assign channels 5 and 6 as the input of an audio track on the preferred DAW.
+
+Q: What is the purpose of a patchbay? 
+A: The purpose of a patchbay is to connect and use external gear such as microphones and guitars. 
+Q: How is the signal flow between devices in the rack configured? 
+A: The signal flow between devices in the rack is configured by a signal flow chart, which shows the connection of Apollo/DAW inputs, hardware inputs, and notes.
+
+Q1: What type of cable do I need to use? 
+A1: You need to use the provided AUX cable (3.5mm TRS).
+Q2: Where should I plug the cable? 
+A2: The cable should be plugged into channels 7 and 8 of the Apollo Audio Interface.
+

@@ -48,7 +48,7 @@ async function getTextFromPDF(path) {
  */
 function readQuestionsFromFile(path) {
   const text = readFileSync(path, {encoding:'utf-8', flag:'r'});
-  const textArray = text.split('\n'); // might need to be \r\n if .txt file made manually on Windows
+  const textArray = text.split('\n'); // BUG: might need to be \r\n if .txt file made manually on Windows
 
   let questionArr = [];
   let tempArr = [];

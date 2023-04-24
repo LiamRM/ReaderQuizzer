@@ -21,6 +21,8 @@ You can start with this very repository:
 - [ ] Correctly set height of questionBox based on the zoom factor (could probably change this dynamically if front-end created in React)
 - [ ] Generate questions by section (not by page)
 - [x] Open files dynamically
+- [x] Fixed corrupted duplicate PDF files by deleting duplicate files before uploading new files.
+- [x] Search for and open the questionsFile corresponding to the opened pdf file
 - [x] Structure response from official ChatGPT API
 - [x] Incorporate official ChatGPT API
 - [x] Fix 'generate questions' icon

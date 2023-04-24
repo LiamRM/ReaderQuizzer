@@ -1,5 +1,5 @@
-Q:What is the purpose of trace-based just-in-time type specialization?
-A: To provide inter-procedural type specialization and an efficient way of incrementally compiling lazily discovered alternative paths through nested loops.
+Q1: What is the purpose of trace-based just-in-time type specialization?
+A1: To provide inter-procedural type specialization and an efficient way of incrementally compiling lazily discovered alternative paths through nested loops.
 
 Q1: What algorithm is used to capture and compile frequently executed code regions?
 A1: Trace tree based compilation.

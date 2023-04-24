@@ -46,6 +46,7 @@ pdfFileInput.addEventListener('change', async (event) => {
   const formData = new FormData();
   formData.append('pdfFile', file);
 
+  /* POST request to upload file to server (creds ChatGPT) */
   try {
     const response = await fetch('/upload', {
       method: 'POST',
@@ -64,10 +65,6 @@ pdfFileInput.addEventListener('change', async (event) => {
       throw new Error('Network response was not ok.');
     }
     
-    // const textContent = await response.text();
-
-    // console.log(textContent);
-    // Display the extracted text content to the user
   } catch (error) {
     console.error(error);
   }

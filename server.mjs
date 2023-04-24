@@ -43,7 +43,9 @@ dotenv.config()
 
 
 /* variables */
-var questionArray = readQuestionsFromFile("web/questions/linearalg.txt");
+var questionFolder = "web/questions/";
+var questionFilePath = "";
+var questionArray = [[]];
 var pdfFolder = "pdfs/"
 var fileName = "";
 var filePath = "";  // default is empty
@@ -72,6 +74,7 @@ const storage = multer.diskStorage({
       });
     } else {
       // File does not exist, accept the upload
+      console.log("New file, accepting upload.");
       cb(null, filename);
     }
   }
@@ -157,7 +160,6 @@ app.get('/', function(req, res) {
 
 app.get('/static/viewer.html', function(req, res) {
   // res.sendFile(path.join(__dirname + '/static/viewer.ejs'));
-  console.log("QArray length:", questionArray.length);
   res.render("viewer", {questionArray: questionArray});
 });
 
@@ -170,20 +172,26 @@ app.post('/upload', upload.single('pdfFile'), async (req, res) => {
     return res.status(400).send('No file uploaded.');
   }
 
-  /* save pdfFile path and redirect client to newly opened PDF */
+  /* update pdfFile and questionFile paths */
   fileName = pdfFile.filename;
   filePath = pdfFolder + pdfFile.filename;
-  res.redirect('/static/viewer.html' + '?file=' + filePath);
-  
-  // The file has been successfully uploaded to the server's file system
-  // You can process the file here (e.g., read its contents or move it to a different directory)
-  // getTextFromPDF(pdfFile.path).then(pageTexts => {
-  //   // console.log(pageTexts);
+  questionFilePath = questionFolder + fileName.slice(0, -4) + '.txt';   // slice() to replace .pdf with .txt. (Ex: web/questions/sam.txt)
 
-  //   /* save pdfFile path object on server? */
-  //   console.log(pdfFile.filename);
-    
-  // })
+  /* check if questionsFile exists, if so, open it */
+  fs.access(questionFilePath, fs.constants.F_OK, (err) => {
+    if (err) {
+      // File doesn't exist
+      console.error("No question file found.");
+    } else {
+      // File exists, read questions from file
+      questionArray = readQuestionsFromFile(questionFilePath);
+      console.log("Question file found and loaded.");
+      console.log("QuestionArray length:", questionArray.length);
+    }
+  });
+
+  /* Redirect client to newly opened PDF */
+  res.redirect('/static/viewer.html' + '?file=' + filePath);
 });
 
 
@@ -196,11 +204,12 @@ app.post('/static/viewer.html', function(req, res) {
   getTextFromPDF("web/" + filePath).then(pageTexts => {
     // console.log(pageTexts);
     gptQuestionFunc(pageTexts, questionType, numQuestions).then(lqs => {
-      console.log(lqs);
+      // console.log(lqs);
+      console.log("Done!");
       questionArray = lqs;
 
-      // Write result to file
-      saveQuestionsToFile(questionArray, 'web/questions/linearalg.txt');
+      // Write result to question file
+      saveQuestionsToFile(questionArray, questionFilePath);
 
       res.redirect('/static/viewer.html' + '?file=' + filePath);
     });
