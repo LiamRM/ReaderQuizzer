@@ -4,7 +4,8 @@ This tool, ReaderQuizzer, is my Computer Science capstone project at NYUAD. The 
 
 The tool uses the ChatGPT API under the hood to generate these questions.
 
-### :gear: Installation
+
+## :gear: Installation
 1. Install Node.js if you haven't already. You can download the latest version at [their official website](https://nodejs.org/en/download). LTS version works fine.
 2. Clone this GitHub repository or download the zip file, found by clicking the blue '< > Code' button above.
 3. Navigate to the project directory in your terminal.
@@ -13,6 +14,7 @@ The tool uses the ChatGPT API under the hood to generate these questions.
 npm install
 ```
 This will install all the necessary packages listed in the `package.json` file.
+
 5. Create an OpenAI account and obtain an OpenAI API key on [the OpenAI API website](https://platform.openai.com/account/api-keys).
 6. Create a .env file in the root directory of your project and add your OpenAI API key. You can use the .env.example file as a template.
 7. Start the server by using the following command:
@@ -22,7 +24,7 @@ npm start
 8. The application will now be running on port 4000. Open http://localhost:4000 on your preferred browser.
 9. Et voilá! Open your PDF text and happy studying!
 
-### :rocket: Usage
+## :rocket: Usage
 ![Screenshot of the tool](/assets/ReaderQuizzer%20screenshot.png "ReaderQuizzer Screenshot")
 
 1. Open a PDF file by clicking the 'open file' button on the top toolbar. The PDF cannot be password-protected and must have selectable text for ReaderQuizzer to generate questions.
@@ -35,7 +37,8 @@ npm start
 6. Voila! The questions should appear next to the text. 
 
 
-### :toolbox: Under the hood: Design and dependencies
+
+## :toolbox: Under the hood: Design and dependencies
 
 This web app makes serves a pdf viewer via NodeJS + ExpressJS, hosting a local server that passes data to and from a simple front end made in vanilla JavaScript and CSS.
 
@@ -56,7 +59,9 @@ PDF.js:
 - The PDF.js build can be linked to ReaderQuizzer in the <head> of the `viewer.ejs` file.
 
 
-### :dart: To-do
+
+## :dart: To-do
+
 - [x] Generate BOTH comprehension and analysis questions on server
 - [x] Correctly position questions to the right of the PDF Viewer at 100% view
 - [x] Separate answers from questions (each written to new line)
