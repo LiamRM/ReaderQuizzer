@@ -79,7 +79,6 @@ PDF.js:
 - [x] Save questions to file with one question per line, blank line separating page questions
 - [x] Render a `<p>` tag per question
 - [x] Read questions from file into questionArray
-- [x] make questionArray an array of arrays
 - [x] Allow user to specify number of LQs per page (not just 4)
 - [ ] No PDF loaded by default, UI prompting user to "open a file" 
 - [ ] Add loading indicator when ChatGPT questions are loading
