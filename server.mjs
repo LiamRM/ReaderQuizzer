@@ -38,7 +38,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(helmet());  // additional HTTP headers to protect against XSS, clickjacking, etc.
 app.use ('/static', express.static('web'));
 app.use('/build', express.static('build'));
-app.listen(4000, () => console.log('listening on port 4000'));
+app.listen(4000, () => console.log('Server running. Please navigate to http://localhost:4000 on your browser.'));
 dotenv.config()
 
 
