@@ -28,15 +28,16 @@ See https://github.com/adobe-type-tools/cmap-resources
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>PDF.js viewer</title>
 
-
     <link rel="stylesheet" href="/static/viewer.css">
 
+    <!-- GOOGLE FONTS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
 
-<!-- This snippet is used in production (included from viewer.html) -->
-<link rel="resource" type="application/l10n" href="locale/locale.properties">
-<script src="/build/pdf.js"></script>
-
-
+    <!-- This snippet is used in production (included from viewer.html) -->
+    <link rel="resource" type="application/l10n" href="locale/locale.properties">
+    <script src="/build/pdf.js"></script>
     <script src="/static/viewer.js"></script>
     <script src="/static/trace.js"></script>
 
@@ -212,18 +213,51 @@ See https://github.com/adobe-type-tools/cmap-resources
                 <!-- ChatGPT button! -->
                 
                 <form method="post" id="toolbarViewerRightForm">
+                  <div class="dropdown">
+                    <div>
+                      <button type="button" id="chatgpt" class="toolbarButton chatgpt hiddenLargeView dropdown-button" title="Generate ChatGPT Questions" tabindex="30" data-l10n-id="chatgpt">
+                        <span data-l10n-id="chatgpt_label">Generate ChatGPT Questions</span>
+                      </button>
+                    </div>
+                    
+                    <div class="dropdown-menu hidden">
+                      <p class="dropdown-header-text">Question type</p>
+                      <div class="ctn-radiobtns">
+                        <div class="radio-button-group">
+                          <input type="checkbox" class="btn-check" name="comprehension" id="comprehension" autocomplete="off" value="comprehension" checked>
+                          <label class="dropdown-subtext" for="comprehension">Comprehension</label>
+                        </div>
+                        <div class="radio-button-group">
+                          <input type="checkbox" class="btn-check" name="analysis" id="analysis" value="analysis" autocomplete="off">
+                          <label class="dropdown-subtext" for="analysis">Analysis</label>
+                        </div>
+                      </div>
 
-                  <button type="submit" id="chatgpt" class="toolbarButton chatgpt hiddenLargeView" title="Generate ChatGPT Questions" tabindex="30" data-l10n-id="chatgpt">
-                    <span data-l10n-id="chatgpt_label">Generate ChatGPT Questions</span>
-                  </button>
+                      <p class="dropdown-header-text"># Questions per page</p>
+                      <div class="ctn-center">
+                        <div class="slidecontainer">
+                          <p id="slider-label" class="slider-label"></p>
+                          <input type="range" min="1" max="10" name="num_questions" value="4" class="slider" id="questionNumRange">
+                        </div>
+                      
+                        <button class="submit-btn" type="submit">Generate Questions</button>
+                      </div>
+                    </div>
+                  </div>
 
                 </form>
+                
+                <!-- Custom OpenFile button! -->
+                <label for="pdfFileInput" class="file-input-label">Open File</label>
+                <input type="file" id="pdfFileInput"  />
+
+                <div class="verticalToolbarSeparator hiddenSmallView"></div>
 
                 <button id="presentationMode" class="toolbarButton presentationMode hiddenLargeView" title="Switch to Presentation Mode" tabindex="31" data-l10n-id="presentation_mode">
                   <span data-l10n-id="presentation_mode_label">Presentation Mode</span>
                 </button>
 
-                <button id="openFile" class="toolbarButton openFile hiddenLargeView" title="Open File" tabindex="32" data-l10n-id="open_file">
+                <button id="openFile" class="toolbarButton openFile hiddenLargeView hidden" title="Open File" tabindex="32" data-l10n-id="open_file">
                   <span data-l10n-id="open_file_label">Open</span>
                 </button>
 
@@ -293,22 +327,40 @@ See https://github.com/adobe-type-tools/cmap-resources
                     data-l10n-id="page_rotate_ccw"></menuitem>
         </menu>
 
+        <!-- Open file instructions -->
+        <!-- <div class="instruction-container">
+          <h1 class="open-file-instructions">Open a file by clicking 'Open File' in the toolbar.</h1>
+        </div> -->
+
         <div id="viewerContainer" tabindex="0">
 
-          <!-- TODO: change this to a single page viewer? -->
           <div id="pdf-viewer-container">
             <div id="viewer" class="pdfViewer"></div>
             
-            <div id="questionContainer">
+            <div id="questionContainer" >
             <!-- OUTPUT OF CHATGPT LEARNING QUESTIONS -->
-            <% for( let index = 0; index < questionArray.length; index++ ) { %>
-              <div class="pageQuestionContainer">
-                <div class="questionBox">
-                  <% for( let innerIndex = 0; innerIndex < questionArray[index].length; innerIndex++ ) { %>
-                    <p class="questionText"> <%= questionArray[index][innerIndex] %>  </p>
-                  <% } %>
+            <% if(questionArray === undefined || questionArray.length === 0 ) { %>
+              <!-- Array does not exist or is empty -->
+            <% } else { %>
+              <% for( let index = 0; index < questionArray.length; index++ ) { %>
+                <div class="pageQuestionContainer">
+                  <div class="questionBox">
+                    <% for( let innerIndex = 0; innerIndex < questionArray[index].length; innerIndex++ ) { %>
+                      <!-- Only evenly indexed elements are questions -->
+                      <% if(innerIndex % 2 == 0) { %>
+                        <p class="questionText"> <%= questionArray[index][innerIndex] %>  </p>
+                        <div class="answerBox">
+                          <img src="/static/images/expand.svg" class="answerIcon" />
+                          <p class="showAnswerLabel">Show Answer</p>
+
+                          <!-- Next index is the answer to the question -->
+                          <p class="answerText hidden"> <%= questionArray[index][innerIndex + 1] %> </p>
+                        </div>
+                      <% } %>
+                    <% } %>
+                  </div>
                 </div>
-              </div>
+              <% } %>
             <% } %>
                 
             </div>
@@ -420,5 +472,10 @@ See https://github.com/adobe-type-tools/cmap-resources
 
     </div> <!-- outerContainer -->
     <div id="printContainer"></div>
+
   </body>
+
+  <!-- Drop-down menu -->
+  <script src="/static/utils.js"></script>
+
 </html>

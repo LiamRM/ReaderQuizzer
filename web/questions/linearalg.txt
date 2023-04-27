@@ -1,0 +1,58 @@
+Q1: What is the purpose of trace-based just-in-time type specialization?
+A1: To provide inter-procedural type specialization and an efficient way of incrementally compiling lazily discovered alternative paths through nested loops.
+
+Q1: What algorithm is used to capture and compile frequently executed code regions?
+A1: Trace tree based compilation.
+Q2: How does TraceMonkey dynamically translate a program to nested, type-specialized trace trees?
+A2: By recording nested trace trees and stopping the inner tree when it reaches an outer loop, then starting a new trace at the outer loop header and attempting to call the inner tree when the outer loop reaches the inner loop header.
+
+Q1: What is the purpose of guards in the LIR recording of the sample program?
+A1: Guards verify that the control flow and types are identical to those observed during trace recording. 
+Q2: How does TraceMonkey attempt to nest the inner loop inside the current trace?
+A2: TraceMonkey calls the inner trace as a subroutine and records the call as part of the current trace.
+
+Q1: What are the key optimizations that are performed when recording LIR?
+A1: Type specialization, representation specialization (e.g. objects), and guard instructions to ensure assumptions about state are correct. 
+Q2: What is a typed trace?
+A2: A typed trace is a trace annotated with a type for every variable (including temporaries) on the trace, and an entry type map giving the required types for variables used on the trace before they are defined.
+
+Q1: What are guards used for in TraceMonkey? 
+A1: Guards are used to verify assumptions made during optimizations.
+
+Q1: What is the purpose of blacklisting traces in the VM?
+A1: To avoid spending time trying to record traces that will fail due to limitations in the implementation.
+Q2: What is the purpose of loop header no-op and patching the bytecode?
+A2: To avoid spending time finding the loop fragment and to blacklist a fragment by replacing the loop header no-op with a regular no-op.
+
+Q1: What is the algorithm for building nested trace trees?
+A1: The algorithm starts tracing at loop headers, stops when exiting a loop, calls inner loops with type-matching compiled trace trees, aborts outer recording to obtain inner loop trace, and calls inner tree as a nested trace tree.
+Q2: What is the key insight of the nesting algorithm?
+A2: The key insight is that if each loop is represented by its own trace tree, the code for each loop can be contained only in its own tree and outer loop paths will not be duplicated.
+
+Question 1: What optimizations are used in the trace recorder?
+Answer: Constant folding, CSE, expression simplification, and source language semantic-specific expression simplification.
+Question 2: How does the register allocator work?
+Answer: Greedy pass over the trace, assigns free register to each instruction if available, uses class heuristic to select "oldest" register-carried value for spilling.
+
+Q: What is trace stitching?
+A: Trace stitching is a feature that allows transitions from a trace to a branch trace at a side exit, avoiding the costs of calling traces from the monitor.
+
+Q1: What is the purpose of the foreign function interface (FFI) in SpiderMonkey?
+A1: The FFI allows SpiderMonkey to call C builtins and host system functions.
+
+Q: What programs benefit most from TraceMonkey?
+A: Programs that benefit most from type specialization, such as those that perform bit manipulation.
+Q: What is the estimated performance of TraceMonkey on benchmark programs?
+A: TraceMonkey produces particularly efficient code for these programs and can execute 25 times faster than the SpiderMonkey interpreter, and almost 5 times faster than V8 and SFX for one of the benchmark programs.
+
+Q1: What is the overall speedup achieved by the VM?
+A1: 3.9x. 
+Q2: How many benchmarks does the VM outperform?
+A2: 9.
+
+Q: What are the main benefits of trace-based JavaScript compilation?
+A: Benefits of trace-based JavaScript compilation include improved performance, type specialization, native code generation and reduced dispatch overhead.
+
+Q1: What is the purpose of the National Science Foundation (NSF)? 
+A1: The National Science Foundation (NSF) funds and promotes research in science, technology, engineering, and mathematics.
+

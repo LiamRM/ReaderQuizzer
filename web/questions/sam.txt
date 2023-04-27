@@ -1,45 +1,81 @@
-1. What is the title of the research article?
-2. What city is mentioned in the article?
-3. Who developed the "Opportunity Atlas"?
-4. What are the improvements seen in a low-cost program created by Raj Chetty’s Opportunity Insights research group?
+C1: What is the Opportunity Atlas developed by Harvard economist Raj Chetty?
+Answer: The Opportunity Atlas is a research project developed by Harvard economist Raj Chetty that examines social mobility rates in different areas of the U.S.
+C2: What program did Raj Chetty's Opportunity Insights research group create?
+Answer: Raj Chetty's Opportunity Insights research group created a low-cost program that showed dramatic improvements in social mobility for low-income families in Seattle.
+A1: What are the strengths of the program created by Raj Chetty's Opportunity Insights research group?
+Answer: The strengths of the program created by Raj Chetty's Opportunity Insights research group include its low cost and the dramatic improvements in social mobility it has demonstrated for low-income families in Seattle.
+A2: What other measures could be taken to improve social mobility for low-income families?
+Answer: Other measures that could be taken to improve social mobility for low-income families include providing access to high-quality education and job training, increasing access to capital, and creating policies that support economic mobility.
 
-1. What is the main purpose of housing choice vouchers?
-2. How did the 2015 incident in McKinney, Texas illustrate the potential bias in the system?
-3. What was the result of the Seattle experiment conducted by Opportunity Insights?
-4. How does living in a high-opportunity neighborhood impact a child's future?
+C1: What is the program known as Section 8?
+Answer: Section 8 is a federal housing aid program that provides low-income households with vouchers to pay their rent.
+C2: What is the Seaattle experiment and what did it show?
+Answer: The Seattle experiment, part of an ongoing project called 'Creating Moves to Opportunity', showed that adding additional services, implemented at low cost, could lead to a 40% boost in the share of families with vouchers who were able to move to better neighborhoods.
+A1: What impact does exposure to better neighborhoods have on a child's future?
+Answer: Exposure to better neighborhoods (as opposed to exposure to poverty) makes a world of difference in a child’s future earnings and education level.
+A2: How was the Moving to Opportunity demonstration conducted by the US Department of Housing and Urban Development different from the Seattle experiment?
+Answer: The Moving to Opportunity demonstration required families to move to low-poverty areas, while the Seattle experiment provided additional services and enabled voucher holders to choose where to move.
 
-1. What is the central focus of the research article?
-2. What is the purpose of the Seattle experiment?
-3. How did the researchers measure success in the trial?
-4. What are the potential impacts of the trial's results?
+C1: What was the result of the Seattle experiment? 
+Answer: The intervention resulted in a 40% improvement in the number of families who moved to high-opportunity neighborhoods. 
+C2: What is the average amount of money paid by Housing Choice Voucher recipients? 
+Answer: Housing Choice Voucher recipients pay 30% of their income towards rent, on average. 
+A1: What factors explain the disparity in living standards across different areas? 
+Answer: Factors such as structural segregation, poverty and lack of opportunity can contribute to disparities in living standards across different areas. 
+A2: What could be done to improve the situation for low-income families?
+Answer: Education for both tenants and landlords about the possibilities under the federal vouchers program could help improve the situation for low-income families.
 
-1. What services are designed for families in the Creating Moves to Opportunity intervention?
-2. How do family navigators help families find housing?
-3. What types of cash assistance does the intervention provide?
-4. What is the goal of the Science of Opportunity initiative?
+C1: What services does the Creating Moves to Opportunity intervention provide?
+Answer: The intervention provides family-facing services (coaching for families, rental resume building, etc.) and cash for application fees, rental insurance, security deposits, first/last months' rent, etc.
+C2: What is the purpose of the family navigators in the intervention?
+Answer: The family navigators provide coaching for families when they fill out rental applications and search for houses, and help them build a rental resume to tell their housing history and explain difficult circumstances such as eviction or irregular income.
+A1: What methods are used to create opportunities for families?
+Answer: The intervention uses family-facing services (coaching for families, rental resume building, etc.) and cash to help families overcome barriers to accessing high-opportunity areas.
+A2: What benefits does the intervention offer to families?
+Answer: The intervention offers families information on the benefits of living in high-opportunity areas, coaching and assistance when filling out rental applications and searching for houses, and cash for application fees, rental insurance, security deposits, first/last months' rent, etc.
 
-1. What services did the researchers contract with Interim to provide? 
-2. What misgivings do landlords have about housing vouchers? 
-3. How does the Creating Moves to Opportunity experiment help landlords? 
-4. What benefits do families with vouchers receive from the program?
+C1: What is Interim? 
+Answer: Interim is a Seattle nonprofit, community development authority and housing justice organization.
+C2: How much does the Creating Moves to Opportunity experiment cost on average?
+Answer: The Creating Moves to Opportunity experiment costs $2,600 per family per voucher issued, on average.
+A1: What strategies can be used to build a pool of landlords willing to rent to voucher holders?
+Answer: Strategies to build a pool of landlords willing to rent to voucher holders include providing a loss-mitigation fund, educating landlords on discrimination based on source of income, and providing a phone number to call.
+A2: What are some factors that can affect opportunity in seemingly similar neighborhoods?
+Answer: Factors that can affect opportunity in seemingly similar neighborhoods include demographic indicators and social-cohesion factors that are harder to quantify.
 
-1. What are the mental health benefits of moving out of neighborhoods with high poverty? 
-2. What types of factors might guide people's decisions when they make housing choices? 
-3. How does narrative interviewing work in the context of research studies? 
-4. What is the "secret sauce" that has enabled the Seattle trial to make large gains?
+C1: What did the Moving to Opportunity study of the 1990s show?
+Answer: The Moving to Opportunity study of the 1990s showed that there could be mental health benefits from moving out of neighborhoods with high poverty.
+C2: What approach did the researchers use in the HUD trial?
+Answer: The researchers used a semi-structured conversational method called narrative interviewing in the HUD trial.
+A1: What is the significance of the Seaattle study?
+Answer: The Seaattle study has significant implications for how policymakers can improve housing aid. 
+A2: What research needs to be done to further refine the study?
+Answer: To further refine the study, researchers need to examine whether any single factor is more associated with moves to opportunity, if landlord education is the key, or if a combination of approaches works best.
 
-1. What did the Housing Choice Voucher Mobility Demonstration Act authorize public housing agencies to do?
-2. What does the Opportunity Atlas map out?
-3. What are some ways policymakers can improve the Section 8 program?
-4. What is one of the criticisms of the Moving to Opportunity study in the ‘90s?
+C1: What did Congress pass in 2018?
+Answer: Congress passed the Housing Choice Voucher Mobility Demonstration Act in 2018.
+C2: What is the Opportunity Atlas?
+Answer: The Opportunity Atlas is a map of data on household income, race, and neighborhood characteristics created by Opportunity Insights.
+A1: How can policymakers make Section 8 more effective?
+Answer:Policymakers can make Section 8 more effective by using Small Area Fair Market Rents to calculate voucher value, banning landlord discrimination based on source of income, and helping voucher users and landlords figure out how to use vouchers.
+A2: What is the potential impact of Trump administration's threats to cut Section 8's budget?
+Answer: The potential impact of Trump administration's threats to cut Section 8's budget is that housing authorities may cap the value of vouchers or hold back on issuing new vouchers as families exit the program.
 
-1. What did the researchers find in their initial study on intergenerational mobility? 
-2. What does Brian Collier say about Charlotte? 
-3. What is the typical modern configuration of racial segregation? 
-4. What is different in Charlotte compared to other cities in terms of poverty and mobility challenges?
+C1: What did the researchers do with Chetty to design a follow-up experiment?
+Answer: They partnered with Chetty to design a follow-up experiment.
+C2: What did the Opportunity Atlas reveal about Charloعe?
+Answer: It ranked dead last among large cities in the U.S.
+A1: Why is Charloعe an important place to study for intergenerational mobility?
+Answer: It has distinct poverty challenges and racial segregation patterns, making it a valuable place to study intergenerational mobility.
+A2: What implications does this research have for policy makers?
+Answer: It suggests that if certain frictions and barriers can be solved, it could lead to different choices, leading to improved social mobility outcomes.
 
-1. What is the main point of the research article?
-2. What effects have been caused by gentrification?
-3. How can housing vouchers help to combat the negative effects of segregation?
-4. What has the research of DeLuca shown?
+C1: What two negative results does Collier attribute to the highly segregated communities in Charlotte? 
+Answer: Perceived lack of poverty and negative effects due to segregation.
+C2: What has research on gentrification found about displacement in New York? 
+Answer: Displacement is a reality for low-income families and vulnerable children, whether they're born into neighborhoods that gentrify or not.
+A1: What are the effects of poverty in America?
+Answer: Poverty has stratified opportunity across America, leading to limited access to resources and educational opportunities.
+A2: What strategies could be employed to combat the effects of segregation, gentrification, and displacement?
+Answer: Enabling more low-income families to move into better areas, such as through housing vouchers, could help to combat the worst winner-take-all effects of segregation, gentrification, and displacement.
 
