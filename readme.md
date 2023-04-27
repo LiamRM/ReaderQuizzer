@@ -7,7 +7,7 @@ The tool uses the ChatGPT API under the hood to generate these questions.
 
 ## :gear: Installation
 1. Install Node.js if you haven't already. You can download the latest version at [their official website](https://nodejs.org/en/download). LTS version works fine.
-2. Clone this GitHub repository or download the zip file, found by clicking the blue '< > Code' button above.
+2. Clone this GitHub repository or download the zip file, found by clicking the blue `< > Code` button above.
 3. Navigate to the project directory in your terminal.
 4. Install the dependencies using the following command:
 ```
