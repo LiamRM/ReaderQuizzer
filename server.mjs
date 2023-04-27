@@ -45,7 +45,7 @@ dotenv.config()
 /* variables */
 var questionFolder = "web/questions/";
 var questionFilePath = "";
-var questionArray = [[]];
+var questionArray;
 var pdfFolder = "pdfs/"
 var fileName = "";
 var filePath = "";  // default is empty
@@ -89,23 +89,41 @@ const upload = multer({ storage: storage });
  * @param {number} numQuestions - number of learning questions to generate per page.
  * @returns {array} resultArray - array of learning questions, each elem is an array of questions for a page/paragraph. Each question is followed by an answer.
  */
-async function gptQuestionFunc(textArray, questionType = 'Comprehension', numQuestions = 4) {
+async function gptQuestionFunc(textArray, questionType = 'comprehension', numQuestions = 4) {
 
   let prompt = '';
+  let resultArray = [];
+  console.log("Question Type:", questionType);
+
   switch (questionType) {
-    case 'Comprehension':
-      prompt = 'Write ' + numQuestions + ' comprehension questions followed by answers to the questions on a new line about the following research article: "' + textArray[0].trimEnd()+'".';
+    case 'comprehension':
+      prompt = `Write ${numQuestions} comprehension questions followed by answers to the questions on a new line about the following research article: 
+      "${textArray[0].trimEnd()}".
+      Number these questions with a C (like C1, C2, etc) and output each question to a new line. Output an answer preceded with 'Answer:' to a new line after each question.`
       break;
     
-    case 'Analysis':
-      prompt = 'Analysis questions are questions that force the reader to reflect and expand beyond the scope of the paper. These types of questions require less regurgitation and more sustained thought, forcing the reader to identify reasons or motives, identify relations across texts, and reach a conclusion. For example, analysis questions include “What are the limitations of this paper?”, “What are the weaknesses in this writer’s argument?”, and “How does the program in this paper compare to existing programs?”. Based on this definition, write ' + numQuestions + ' analysis questions followed by answers to the questions on a new line about the following research article: "' + textArray[0].trimEnd() + '".';
+    case 'analysis':
+      prompt = `Analysis questions are questions that force the reader to reflect and expand beyond the scope of the paper. These types of questions require less regurgitation and more sustained thought, forcing the reader to identify reasons or motives, identify relations across texts, and reach a conclusion. For example, analysis questions include “What are the limitations of this paper?”, “What are the weaknesses in this writer’s argument?”, and “How does the program in this paper compare to existing programs?”. 
+      Based on this definition, write ${numQuestions} analysis questions followed by answers to the questions on a new line about the following research article: 
+      "${textArray[0].trimEnd()}".
+      Number these questions with an A (like A1, A2, etc) and output each question to a new line. Output an answer preceded with 'Answer:' to a new line after each question.`
+      break;
+
+    case 'both':
+      prompt = `Write ${Math.ceil(numQuestions/2)} comprehension questions followed by answers to the questions on a new line about the following research article: 
+      "${textArray[0].trimEnd()}". 
+      Number these questions with a C (like C1, C2, etc) and output each question to a new line. Output an answer preceded with 'Answer:' to a new line after each question.
+      After, generate ${Math.floor(numQuestions/2)} analysis questions about the same text. Write these analysis questions based on this definition: 
+      'Analysis questions are questions that force the reader to reflect and expand beyond the scope of the paper. These types of questions require less regurgitation and more sustained thought, forcing the reader to identify reasons or motives, identify relations across texts, and reach a conclusion. For example, analysis questions include “What are the limitations of this paper?”, “What are the weaknesses in this writer’s argument?”, and “How does the program in this paper compare to existing programs?”.'
+      Number these questions with an A (like A1, A2, etc) and output each question to a new line. Output an answer preceded with 'Answer:' to a new line after each question.`
       break;
 
     default:
-      prompt = 'Write ' + numQuestions + ' comprehension questions followed by answers to the questions on a new line about the following research article: "' + textArray[0].trimEnd() + '".';
+      prompt = `Write ${numQuestions} comprehension questions followed by answers to the questions on a new line about the following research article: 
+      "${textArray[0].trimEnd()}".
+      Number these questions with a C (like C1, C2, etc) and output each question to a new line. Output an answer preceded with 'Answer:' to a new line after each question.`
       break;
   }
-  let resultArray = [];
   
   const api = new ChatGPTAPI({
     apiKey: process.env.OPENAI_API_KEY
@@ -115,22 +133,36 @@ async function gptQuestionFunc(textArray, questionType = 'Comprehension', numQue
   let res = await oraPromise(api.sendMessage(prompt), {
     text: 'Loading questions for Page 1'
   });
-  resultArray[0] = structureResponse(res.text)
+  resultArray[0] = structureResponse(res.text);
+
   
   // Loop through remaining pages and generate learning questions (set loop to index < textArray.length to go through all pages)
-  // for (let index = 1; index < 4; index++) {
   for (let index = 1; index < textArray.length; index++) {
     switch (questionType) {
-      case 'Comprehension':
-        prompt = 'Write ' + numQuestions + ' comprehension questions followed by answers to the questions on a new line about the following research article: "' + textArray[index].trimEnd()+'".';
+      case 'comprehension':
+        prompt = `Write ${numQuestions} comprehension questions followed by answers to the questions on a new line about the following research article: 
+        "${textArray[index].trimEnd()}".
+        Number these questions with a C (like C1, C2, etc) and output each question to a new line. Output an answer preceded with 'Answer:' to a new line after each question.`
         break;
-      
-      case 'Analysis':
-        prompt = 'Analysis questions are questions that force the reader to reflect and expand beyond the scope of the paper. These types of questions require less regurgitation and more sustained thought, forcing the reader to identify reasons or motives, identify relations across texts, and reach a conclusion. For example, analysis questions include “What are the limitations of this paper?”, “What are the weaknesses in this writer’s argument?”, and “How does the program in this paper compare to existing programs?”. Based on this definition, write ' + numQuestions + ' analysis questions followed by answers to the questions on a new line about the following research article: "' + textArray[index].trimEnd() + '".';
+    
+      case 'analysis':
+        prompt = `Based on the previously provided definition of analysis questions, write ${numQuestions} analysis questions followed by answers to the questions on a new line about the following research article: 
+        "${textArray[index].trimEnd()}".
+        Number these questions with an A (like A1, A2, etc) and output each question to a new line. Output an answer preceded with 'Answer:' to a new line after each question.`
         break;
-  
+
+      case 'both':
+        prompt = `Write ${Math.ceil(numQuestions/2)} comprehension questions followed by answers to the questions on a new line about the following research article: 
+        "${textArray[index].trimEnd()}". 
+        Number these questions with a C (like C1, C2, etc) and output each question to a new line. Output an answer preceded with 'Answer:' to a new line after each question.
+        After, generate ${Math.floor(numQuestions/2)} analysis questions about the same text. Write these analysis questions based on the previously provided definition for analysis questions. 
+        Number these questions with an A (like A1, A2, etc) and output each question to a new line. Output an answer preceded with 'Answer:' to a new line after each question.`
+        break;
+
       default:
-        prompt = 'Write ' + numQuestions + ' comprehension questions followed by answers to the questions on a new line about the following research article: "' + textArray[index].trimEnd() + '".';
+        prompt = `Write ${numQuestions} comprehension questions followed by answers to the questions on a new line about the following research article: 
+        "${textArray[index].trimEnd()}".
+        Number these questions with a C (like C1, C2, etc) and output each question to a new line. Output an answer preceded with 'Answer:' to a new line after each question.`
         break;
     }
     let pageNum = index + 1
@@ -195,11 +227,37 @@ app.post('/upload', upload.single('pdfFile'), async (req, res) => {
 });
 
 
+/* POST request triggered by "Generate Questions" button */
 app.post('/static/viewer.html', function(req, res) {
 
   console.log("Body:", req.body);
-  let questionType = req.body.question_type;
+  let questionType = '';
   let numQuestions = req.body.num_questions;
+  let comprehension = req.body.comprehension;
+  let analysis = req.body.analysis;
+
+  // No file loaded, do nothing
+  if(filePath === '') {
+    console.log("No file loaded!");
+    res.redirect('/static/viewer.html' + '?file=' + filePath);
+    return;
+  }
+
+  /* pre-process questionType */
+  if(typeof comprehension !== "undefined" && typeof analysis !== "undefined") {
+    questionType = 'both';
+  }
+  else if(typeof comprehension !== "undefined") {
+    questionType = 'comprehension';
+  }
+  else if(typeof analysis !== "undefined") {
+    questionType = 'analysis';
+  } else {
+    // no checkbox selected, do nothing
+    console.log("No checkboxes selected.");
+    res.redirect('/static/viewer.html' + '?file=' + filePath);
+    return;
+  }
 
   getTextFromPDF("web/" + filePath).then(pageTexts => {
     // console.log(pageTexts);
@@ -210,6 +268,7 @@ app.post('/static/viewer.html', function(req, res) {
 
       // Write result to question file
       saveQuestionsToFile(questionArray, questionFilePath);
+      console.log("Saved questions to file.");
 
       res.redirect('/static/viewer.html' + '?file=' + filePath);
     });

@@ -16,8 +16,9 @@ You can start with this very repository:
 
 
 ### Todo (in order of priority)
+- [x] Generate BOTH comprehension and analysis questions on server
 - [x] Correctly position questions to the right of the PDF Viewer at 100% view
-- [ ] Separate answers from questions (each written to new line)
+- [x] Separate answers from questions (each written to new line)
 - [ ] Correctly set height of questionBox based on the zoom factor (could probably change this dynamically if front-end created in React)
 - [ ] Generate questions by section (not by page)
 - [x] Open files dynamically

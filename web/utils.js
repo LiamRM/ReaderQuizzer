@@ -1,11 +1,14 @@
+// dropdown
 const dropdownButton = document.querySelector('.dropdown-button');
 const dropdownMenu = document.querySelector('.dropdown-menu');
+// open file
 const openFileInstructions = document.querySelector('.open-file-instructions');
-
+// answer boxes
 const answerBoxes = document.getElementsByClassName('answerBox');
 const answerTexts = document.getElementsByClassName('answerText');
 const answerLabels = document.getElementsByClassName('showAnswerLabel');
 const pdfFileInput = document.getElementById('pdfFileInput');
+
 
 dropdownButton.addEventListener('click', function() {
   dropdownMenu.classList.toggle('hidden');
