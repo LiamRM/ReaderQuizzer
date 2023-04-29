@@ -95,23 +95,24 @@ async function gptQuestionFunc(textArray, questionType = 'comprehension', numQue
   let resultArray = [];
   console.log("Question Type:", questionType);
 
+  // maximum request is 4097 tokens, shorten text to a maximum of 2900 characters to stay below
   switch (questionType) {
     case 'comprehension':
       prompt = `Write ${numQuestions} comprehension questions followed by answers to the questions on a new line about the following research article: 
-      "${textArray[0].trimEnd()}".
+      "${textArray[0].trimEnd().slice(0,2900)}".
       Number these questions with a C (like C1, C2, etc) and output each question to a new line. Output an answer preceded with 'Answer:' to a new line after each question.`
       break;
     
     case 'analysis':
       prompt = `Analysis questions are questions that force the reader to reflect and expand beyond the scope of the paper. These types of questions require less regurgitation and more sustained thought, forcing the reader to identify reasons or motives, identify relations across texts, and reach a conclusion. For example, analysis questions include “What are the limitations of this paper?”, “What are the weaknesses in this writer’s argument?”, and “How does the program in this paper compare to existing programs?”. 
       Based on this definition, write ${numQuestions} analysis questions followed by answers to the questions on a new line about the following research article: 
-      "${textArray[0].trimEnd()}".
+      "${textArray[0].trimEnd().slice(0,2900)}".
       Number these questions with an A (like A1, A2, etc) and output each question to a new line. Output an answer preceded with 'Answer:' to a new line after each question.`
       break;
 
     case 'both':
       prompt = `Write ${Math.ceil(numQuestions/2)} comprehension questions followed by answers to the questions on a new line about the following research article: 
-      "${textArray[0].trimEnd()}". 
+      "${textArray[0].trimEnd().slice(0,2900)}". 
       Number these questions with a C (like C1, C2, etc) and output each question to a new line. Output an answer preceded with 'Answer:' to a new line after each question.
       After, generate ${Math.floor(numQuestions/2)} analysis questions about the same text. Write these analysis questions based on this definition: 
       'Analysis questions are questions that force the reader to reflect and expand beyond the scope of the paper. These types of questions require less regurgitation and more sustained thought, forcing the reader to identify reasons or motives, identify relations across texts, and reach a conclusion. For example, analysis questions include “What are the limitations of this paper?”, “What are the weaknesses in this writer’s argument?”, and “How does the program in this paper compare to existing programs?”.'
@@ -120,7 +121,7 @@ async function gptQuestionFunc(textArray, questionType = 'comprehension', numQue
 
     default:
       prompt = `Write ${numQuestions} comprehension questions followed by answers to the questions on a new line about the following research article: 
-      "${textArray[0].trimEnd()}".
+      "${textArray[0].trimEnd().slice(0,2900)}".
       Number these questions with a C (like C1, C2, etc) and output each question to a new line. Output an answer preceded with 'Answer:' to a new line after each question.`
       break;
   }
@@ -128,7 +129,7 @@ async function gptQuestionFunc(textArray, questionType = 'comprehension', numQue
   const api = new ChatGPTAPI({
     apiKey: process.env.OPENAI_API_KEY
   })
-
+  
   // First page
   let res = await oraPromise(api.sendMessage(prompt), {
     text: 'Loading questions for Page 1 of ' + textArray.length
@@ -141,19 +142,19 @@ async function gptQuestionFunc(textArray, questionType = 'comprehension', numQue
     switch (questionType) {
       case 'comprehension':
         prompt = `Write ${numQuestions} comprehension questions followed by answers to the questions on a new line about the following research article: 
-        "${textArray[index].trimEnd()}".
+        "${textArray[index].trimEnd().slice(0,2900)}".
         Number these questions with a C (like C1, C2, etc) and output each question to a new line. Output an answer preceded with 'Answer:' to a new line after each question.`
         break;
     
       case 'analysis':
         prompt = `Based on the previously provided definition of analysis questions, write ${numQuestions} analysis questions followed by answers to the questions on a new line about the following research article: 
-        "${textArray[index].trimEnd()}".
+        "${textArray[index].trimEnd().slice(0,2900)}".
         Number these questions with an A (like A1, A2, etc) and output each question to a new line. Output an answer preceded with 'Answer:' to a new line after each question.`
         break;
 
       case 'both':
         prompt = `Write ${Math.ceil(numQuestions/2)} comprehension questions followed by answers to the questions on a new line about the following research article: 
-        "${textArray[index].trimEnd()}". 
+        "${textArray[index].trimEnd().slice(0,2900)}". 
         Number these questions with a C (like C1, C2, etc) and output each question to a new line. Output an answer preceded with 'Answer:' to a new line after each question.
         After, generate ${Math.floor(numQuestions/2)} analysis questions about the same text. Write these analysis questions based on the previously provided definition for analysis questions. 
         Number these questions with an A (like A1, A2, etc) and output each question to a new line. Output an answer preceded with 'Answer:' to a new line after each question.`
@@ -161,7 +162,7 @@ async function gptQuestionFunc(textArray, questionType = 'comprehension', numQue
 
       default:
         prompt = `Write ${numQuestions} comprehension questions followed by answers to the questions on a new line about the following research article: 
-        "${textArray[index].trimEnd()}".
+        "${textArray[index].trimEnd().slice(0,2900)}".
         Number these questions with a C (like C1, C2, etc) and output each question to a new line. Output an answer preceded with 'Answer:' to a new line after each question.`
         break;
     }

@@ -62,6 +62,7 @@ PDF.js:
 
 ## :dart: To-do
 - [ ] Create a tooltip that outlines question types.
+- [x] Set hard limit of pageText to stay below 4097 tokens chatgpt request limit
 - [x] Generate BOTH comprehension and analysis questions on server
 - [x] Correctly position questions to the right of the PDF Viewer at 100% view
 - [x] Separate answers from questions (each written to new line)
