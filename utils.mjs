@@ -48,6 +48,7 @@ async function getTextFromPDF(path) {
  */
 function readQuestionsFromFile(path) {
   const text = readFileSync(path, {encoding:'utf-8', flag:'r'});
+  // TODO: find a workaround for the CRLF vs LF file issue: https://stackoverflow.com/questions/1552749/difference-between-cr-lf-lf-and-cr-line-break-types
   const textArray = text.split('\n'); // BUG: might need to be \r\n if .txt file made manually on Windows
 
   let questionArr = [];

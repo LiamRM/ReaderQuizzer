@@ -1,6 +1,7 @@
 // dropdown
 const dropdownButton = document.querySelector('.dropdown-button');
 const dropdownMenu = document.querySelector('.dropdown-menu');
+const submitBtn = document.querySelector('.submit-btn');
 // open file
 const openFileInstructions = document.querySelector('.open-file-instructions');
 // answer boxes
@@ -13,6 +14,10 @@ const pdfFileInput = document.getElementById('pdfFileInput');
 dropdownButton.addEventListener('click', function() {
   dropdownMenu.classList.toggle('hidden');
 });
+
+submitBtn.addEventListener('click', function() {
+  dropdownMenu.classList.add('hidden');
+})
 
 // Hide dropdown when user clicks away from it
 document.addEventListener('click', function(event) {

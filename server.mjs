@@ -214,6 +214,7 @@ app.post('/upload', upload.single('pdfFile'), async (req, res) => {
     if (err) {
       // File doesn't exist
       console.error("No question file found.");
+      questionArray = []; // empty the questionArray
     } else {
       // File exists, read questions from file
       questionArray = readQuestionsFromFile(questionFilePath);

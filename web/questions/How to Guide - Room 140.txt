@@ -1,30 +1,46 @@
-Q1: What components are present in Room 140?
-A1: Novation Impulse 61 (Midi Controller keyboard), Akai MPD 18 (Midi controller pad station), Roland Gaia (Synthesizer), Neumann KH 120 (Speakers), iMac (Audio Workstation), AKG K240 MK2 (Headphones), XLR (Patchbay), UAD 4-710d (4 channel Mic/line Preamp), UAD Apollo (8 channel Audio Interface). 
-Q2: What is the purpose of the components in Room 140?
-A2: The components in Room 140 are used for audio production, including synthesizing music, recording audio, and mixing audio.
+C1: What components are in the setup of Room 140? 
+Answer: Novation Impulse 61 (Midi Controller keyboard), Akai MPD 18 (Midi controller pad station), Roland Gaia (Synthesizer), Neumann KH 120 (Speakers), iMac (Audio Workstation), AKG K240 MK2 (Headphones), XLR (Patchbay), UAD 4-710d (4 channel Mic/line Preamp), UAD Apollo (8 channel Audio Interface).
+A1: What are the potential benefits or drawbacks of using the components in this setup? 
+Answer: Potential benefits include increased productivity, improved sound quality, and increased versatility. Potential drawbacks include increased cost, increased complexity, and potential compatibility issues.
 
-Q1: What is the primary purpose of the room? 
-A1: The primary purpose of the room is to be used as a Music Composition / Editing Room. 
-Q2: What is the procedure to switch on/off the Apollo Audio Interface? 
-A2: To switch on the Apollo Audio Interface, press the on/off button. To switch off, press the on/off button for more than 2 seconds.
+C1: What is the primary purpose of the room described in the article?
+Answer: The primary purpose of the room described in the article is to be used as a Music Composition / Editing Room with a capability to record up to 8 live signals in real time (4 mic or line signals).
+C2: What are the three steps for switching on the equipment? 
+Answer: The three steps for switching on the equipment are 1) turning on the IMAC workstation, 2) turning on the Apollo Audio Interface and 3) turning on the two Speakers.
+A1: What is the significance of the order of the steps for switching on and off the equipment?
+Answer: The order of the steps for switching on and off the equipment is important because it ensures that all of the equipment is powered on or off in the correct sequence to avoid any issues with power or audio signals.
 
-Q1: What is the Apollo Audio Interface unit? 
-A1: The Apollo Audio Interface unit is an integral component for this space.
-Q2: How do you use the Apollo Audio Interface unit? 
-A2: To hear any AUDIO, the Apollo unit has to be turned on and the right dial has to be used as demonstrated in the picture.
+C1: What is the Apollo Audio Interface unit?
+Answer: The Apollo Audio Interface unit is an integral component for this space.
+C2: How is the Apollo Audio Interface unit used to hear AUDIO?
+Answer: The Apollo unit has to be turned on and the right dial has to be used as demonstrated in the picture.
+A1: What are the implications of the Apollo Audio Interface unit being an integral component for this space?
+Answer: The Apollo Audio Interface unit enables users to hear audio from the space that they would not otherwise have access to.
 
-Q: What are two MIDI controllers that can be used to enter MIDI data? 
-A: The Novation Impulse 61 and the Akai MPD 18. 
-Q: How can you record the Roland Gaia Synthesizer? 
-A: Assign channels 5 and 6 as the input of an audio track on the preferred DAW.
+C1. What are the two MIDI controllers mentioned in the article?
+Answer: The Novation Impulse 61 and the Akai MPD 18.
+C2. How can one check if the MIDI controller is set up correctly?
+Answer: Check Applications => Utilities => Audio Midi setup => Window: Show MIDI Studio.
+C3. What is permanently assigned to line in 7 & 8 of the Apollo Audio interface?
+Answer: The Roland Gaia Synthesizer.
+C4. How can one record the Roland Gaia Synthesizer?
+Answer: Assign channels 5 and 6 as the input of an audio track on the preferred DAW.
+A1. What implications does the use of MIDI controllers have for sound recording?
+Answer: MIDI controllers allow for greater control and flexibility when recording, allowing for more precise sound editing and manipulation.
 
-Q: What is the purpose of a patchbay? 
-A: The purpose of a patchbay is to connect and use external gear such as microphones and guitars. 
-Q: How is the signal flow between devices in the rack configured? 
-A: The signal flow between devices in the rack is configured by a signal flow chart, which shows the connection of Apollo/DAW inputs, hardware inputs, and notes.
+C1: What is the purpose of a patchbay?
+Answer: The purpose of a patchbay is to connect external gear such as microphones and guitars to a sound source. 
+C2: What must be set in the Audio Preferences of the software to successfully capture a sound source?
+Answer: The interface must be set up in the Audio Preferences of the software to successfully capture a sound source. 
+A1: How does the patchbay help users capture a sound source?
+Answer: The patchbay helps users capture a sound source by allowing them to connect external gear such as microphones and guitars to the sound source.
 
-Q1: What type of cable do I need to use? 
-A1: You need to use the provided AUX cable (3.5mm TRS).
-Q2: Where should I plug the cable? 
-A2: The cable should be plugged into channels 7 and 8 of the Apollo Audio Interface.
+C1: What type of cable is used? 
+Answer: 3.5mm TRS.
+C2: Where should the cable be plugged in? 
+Answer: Channel 7 and 8 of the Apollo Audio Interface.
+C3: Where can assistance be requested? 
+Answer: C3-108 or by emailing nyuad.music@nyu.edu.
+A1: How does using an external source affect the recording process? 
+Answer: It allows audio to be played from an external source.
 

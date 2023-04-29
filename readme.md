@@ -61,7 +61,7 @@ PDF.js:
 
 
 ## :dart: To-do
-
+- [ ] Create a tooltip that outlines question types.
 - [x] Generate BOTH comprehension and analysis questions on server
 - [x] Correctly position questions to the right of the PDF Viewer at 100% view
 - [x] Separate answers from questions (each written to new line)
@@ -81,7 +81,10 @@ PDF.js:
 - [x] Read questions from file into questionArray
 - [x] Allow user to specify number of LQs per page (not just 4)
 - [ ] No PDF loaded by default, UI prompting user to "open a file" 
-- [ ] Add loading indicator when ChatGPT questions are loading
+- [ ] Add loading indicator when ChatGPT questions are loading or make dropdown disappear
+- [x] empty questionArray when loading a new file after a previous one with questions
+- [ ] OCR 
+- [ ] Multiple instances of clients, with one server?
 
 - [x] Change architecture to full-stack web app, locally hosted
     - front-end: React.js. Gets PDF file via <input> and uploads file to back-end via POST request
