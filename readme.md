@@ -81,7 +81,7 @@ PDF.js:
 - [x] Read questions from file into questionArray
 - [x] Allow user to specify number of LQs per page (not just 4)
 - [ ] No PDF loaded by default, UI prompting user to "open a file" 
-- [ ] Add loading indicator when ChatGPT questions are loading or make dropdown disappear
+- [ ] Add front-end loading indicator when ChatGPT questions are loading
 - [x] empty questionArray when loading a new file after a previous one with questions
 - [ ] OCR 
 - [ ] Multiple instances of clients, with one server?

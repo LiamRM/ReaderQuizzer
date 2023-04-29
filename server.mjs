@@ -131,7 +131,7 @@ async function gptQuestionFunc(textArray, questionType = 'comprehension', numQue
 
   // First page
   let res = await oraPromise(api.sendMessage(prompt), {
-    text: 'Loading questions for Page 1'
+    text: 'Loading questions for Page 1 of ' + textArray.length
   });
   resultArray[0] = structureResponse(res.text);
 
@@ -173,7 +173,7 @@ async function gptQuestionFunc(textArray, questionType = 'comprehension', numQue
         parentMessageId: res.messageId
       }),
       {
-        text: 'Loading questions for Page ' + pageNum
+        text: 'Loading questions for Page ' + pageNum + ' of ' + textArray.length
       }
     )
     resultArray[index] = structureResponse(res.text);
