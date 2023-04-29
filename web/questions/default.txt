@@ -1,0 +1,92 @@
+C1: What advantages does a trace-based compilation technique for dynamic languages provide?
+Answer: It provides cheap inter-procedural type specialization and an elegant and efficient way of incrementally compiling lazily discovered alternative paths through nested loops. 
+C2: What is the primary difference between a statically typed language and a dynamically typed language?
+Answer: A statically typed language has concrete type information available at compile-time, while a dynamically typed language does not have type information available until runtime.
+
+C1: How does SpiderMonkey's TraceMonkey use nested trace trees to optimize for tracing VMs?
+Answer: TraceMonkey traces the inner loop and stops when it reaches an outer loop. It then starts a new trace at the outer loop header. When the outer loop reaches the inner loop header, the system tries to call the trace tree for the inner loop.
+C2: What are the contributions of this paper?
+Answer: The contributions of this paper are: (1) an algorithm for dynamically forming trace trees to cover a program, representing nested loops as nested trace trees; (2) an approach of speculatively generating efficient type-specialized code for traces from dynamic language programs; (3) validation of tracing techniques in an implementation based on the SpiderMonkey JavaScript interpreter with speedups of 2x-20x on many programs.
+A1: How does TraceMonkey achieve the effects of inlining?
+Answer: TraceMonkey can achieve the effects of inlining because traces can cross function call boundaries.
+
+C1: What is the purpose of TraceMonkey?
+Answer: TraceMonkey optimizes JavaScript code by compiling it to native code.
+C2: How does TraceMonkey verify that a trace has the required program semantics?
+Answer: TraceMonkey verifies that a trace has the required program semantics by encoding guards in the low-level intermediate representation (LIR) which check that the control flow and types are identical to those observed during trace recording.
+A1: How does TraceMonkey optimize JavaScript code? 
+Answer: TraceMonkey optimizes JavaScript code by recording code along a trace in a low-level compiler intermediate representation (LIR), using type information to compile the trace to native code, which can then be entered if the interpreter PC and the types of values match those observed when trace recording was started.
+
+C1: What is a trace-flavored SSA?
+Answer: A trace-flavored SSA is a low-level intermediate representation used by TraceMonkey which contains constant values, memory loads and stores, integer operators, floating-point operators, function calls, and conditional exits.
+C2: How does TraceMonkey access variables?
+Answer: TraceMonkey accesses variables by unboxing them and copying them to its activation record, then reading and writing these variables with simple loads and stores from a native activation record. 
+A1: What optimization techniques does TraceMonkey use to reduce complex dynamic language constructs to simple typed constructs?
+Answer: TraceMonkey uses type specialization, representation specialization, and guard instructions to reduce complex dynamic language constructs to simple typed constructs.
+
+C1: What is the integer key called?
+Answer: The integer key is called "object shape".
+C2: What is the Number type for JavaScript?
+Answer: The Number type for JavaScript is a set of 64-bit IEEE-754 floating-point numbers ("doubles").
+
+C1: What is the purpose of the backoff counter in this implementation?
+Answer: The backoff counter is used to give temporary conditions that prevent tracing a chance to end.
+C2: How does the system handle type-unstable loops?
+Answer: Type-unstable loops are handled by allowing traces to compile that cannot loop back to themselves due to a type mismatch. Groups of trace trees are connected to execute without having to side-exit to the interpreter to cover odd type cases.
+A1: What design trade-offs were made when implementing exceptions in TraceMonkey?
+Answer: The design trade-off made when implementing exceptions in TraceMonkey was to not support recording throwing and catching of arbitrary exceptions, as exceptions are usually rare in JavaScript.
+
+C1: What is the algorithm for building nested trace trees? 
+Answer: The algorithm for building nested trace trees is to start tracing at loop headers, stop the trace when exiting a loop, and call inner loops as nested trace trees if they have type-matching compiled trace trees. 
+C2: How does loop nesting create no duplication if all the loops in a nest are type-stable? 
+Answer: If all the loops in a nest are type-stable, then loop nesting creates no duplication because each loop is represented by its own trace tree and the code for each loop is only contained in its own tree. 
+A1: What is the purpose of the nesting algorithm?
+Answer: The purpose of the nesting algorithm is to execute programs with nested loops efficiently by covering the nested loops with native code without exponential trace duplication.
+
+C1: What are the four forward filters applied to the trace?
+Answer: Constant folding, CSE, expression simplification, and source language semantic-specific expression simplification.
+C2: What are the three backward filters applied to the trace?
+Answer: Dead data-stack store elimination, dead call-stack store elimination, and dead code elimination.
+A1: What advantages does the trace-based approach offer compared to other approaches?
+Answer: Trace-based approaches can avoid costs associated with testing tags, unboxing, and boxing. They also offer faster startup performance since optimizations run quickly and in two loop passes over the trace.
+
+C1. What is the impact of calling a trace from the monitor?
+Answer: Non-negligible runtime cost. 
+C2. What is the advantage of trace stitching?
+Answer: Avoids costs of calling traces from the monitor. 
+A1. What techniques are used to reduce the cost of trace transitions?
+Answer: Minimizing the number of interpreter-to-trace and trace-to-interpreter transitions, trace stitching, and tree recompilation.
+
+C1: What is the foreign function interface (FFI) in SpiderMonkey?
+Answer: It is a standard signature for JS-callable functions that allows it to call C builtins and host system functions (e.g., web browser control and DOM access).
+C2: How does TraceMonkey handle type-unstable loops?
+Answer: It refactors some of the interpreter API implementation functions to re-materialize the interpreter call stack on demand and uses a C++ static analysis and annotations to verify that the call stack is refreshed when needed.
+A1: What are the main techniques used by TraceMonkey to speed up JavaScript programs?
+Answer: TraceMonkey uses tracing, a C++ static analysis, annotations, and a new FFI to speed up JavaScript programs.
+
+C1: What is the main purpose of the research article?
+Answer: The main purpose is to evaluate the performance of the TraceMonkey trace-based JIT compiler compared to existing JavaScript interpreters and compilers. 
+C2: How does the TraceMonkey compiler improve performance?
+Answer: It improves performance by type-specializing code to use integer arithmetic, which substantially increases speed.
+
+C1: What is the overall speedup achieved by the VM compared to the baseline interpreter? 
+Answer: 3.0x
+C2: How many times must a trace be run for its compilation to be cost-effective? 
+Answer: 270 times.
+A1: What techniques are used in the VM to generate more efficient native code than any other current JavaScript VM? 
+Answer: Trace optimization, type specialization and inline function calls.
+
+C1: What does the acronym SFX stand for?
+Answer: SFX stands for SquirrelFish Extreme.
+C2: What optimization techniques are used in V8?
+Answer: V8 primarily uses inline threading, with call threading only for complex operations. 
+A1: How does dynamic language specialization increase performance?
+Answer: Dynamic language specialization increases performance by generating multiple versions of a procedure specialized for the input types in the language, which can lead to better code and improved performance.
+
+C1: What is LuaJIT? 
+Answer: LuaJIT is a just-in-time compiler for the Lua programming language.
+C2: What is SPECJVM98? 
+Answer: SPECJVM98 is a benchmark program for testing Java Virtual Machine (JVM) performance.
+A1: What techniques are used in dynamic optimization systems to improve performance?
+Answer: Techniques used in dynamic optimization systems include code generation and optimization, context threading, selective inlining, region-based compilation, trace-based just-in-time compilation, and representation-based just-in-time specialization.
+
